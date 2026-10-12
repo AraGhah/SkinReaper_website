@@ -1,4 +1,8 @@
 {
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "redirects": [
     { "source": "/Skinreaper.dc.html", "destination": "/", "permanent": true }
   ]

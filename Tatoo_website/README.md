@@ -2,7 +2,9 @@
 
 Bilingual (English / French) booking website for Skinreaper, tattoo artist at Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal.
 
-Mobile first, dark editorial design, scroll animations, a 3 step booking flow with a real calendar and time slots, and an optional Google Calendar backend that books clients automatically.
+Mobile first, dark editorial design, motion driven animations, a 3 step booking flow with a real calendar and time slots, and an optional Google Calendar backend that books clients automatically.
+
+Built with **React 19**, **Vite** and **Motion** (`motion/react`).
 
 ---
 
@@ -10,87 +12,82 @@ Mobile first, dark editorial design, scroll animations, a 3 step booking flow wi
 
 ```
 .
-├── index.html             The whole website (markup, styles, copy, logic), a Design Component file
-├── support.js             Runtime that renders index.html. Keep it next to the page
-├── vercel.json            Redirects the old /Skinreaper.dc.html address to the home page
-├── image-slot.js          Drag and drop image placeholder helper (loaded by the page)
+├── index.html             Vite entry: meta tags, fonts, <div id="root">
+├── package.json           Scripts and dependencies
+├── vite.config.js         Vite + React plugin
+├── vercel.json            Vercel build settings and the old /Skinreaper.dc.html redirect
 ├── booking-backend.gs     Google Apps Script: calendar availability + automatic booking + emails
-├── img/                   Create this folder and add the photos (not included in the repo)
-│   ├── w1.png ... w10.png Portfolio photos (gallery, hero = w1, about = w8)
-│   └── studio.png         Studio interior photo
-└── README.md
+├── public/
+│   ├── favicon.svg
+│   └── img/               w1.png ... w10.png portfolio photos, studio.png
+└── src/
+    ├── main.jsx           Mounts the app
+    ├── App.jsx            Page layout, intro, scroll lock
+    ├── config.js          Booking settings, contact links, portfolio list
+    ├── dict.js            Every visible string, English and French
+    ├── styles.css         All styles and design tokens
+    ├── lib/               Time zone helpers, image resizing, language context, hooks
+    └── components/        Nav, Hero, Marquee, Work, Lightbox, Sections, Booking, motion helpers
 ```
-
-There is no build step, no npm, no framework install. It is static files.
-
-Until a photo exists in `img/`, the page shows a striped "Drop a photo here" slot in its place. Dropping an image on the slot (or clicking it) previews it for the current browser session only. Save the real file in `img/` with the exact name shown in the slot to publish it.
 
 ---
 
 ## 2. Run it locally
 
-You need any static file server. A plain double click on the file can block `fetch` calls and images, so use a server.
+Requirements: Node.js 20 or newer, an internet connection (Google Fonts) and a recent browser.
 
 ```bash
-# from the project folder, once
+# from the Tatoo_website folder, once
 npm install
 
-# live preview, reloads the page on every save
+# live preview, updates instantly on every save
 npm run dev
 
-# plain static server, no reload
-npm start
+# production build into dist/
+npm run build
+
+# serve the production build
+npm run preview
 ```
 
 Open `http://localhost:5500`. `npm run dev` opens it in your browser automatically.
-
-Without npm: `python -m http.server 8080`, then `http://localhost:8080`.
-
-Requirements: an internet connection (Google Fonts: Anton and Archivo) and a recent browser.
-
-| Feature | Needs |
-| --- | --- |
-| Scroll reveal animations | Chrome / Edge 115+, Safari 26+. Older browsers and Firefox show everything without the scroll effect |
-| Everything else | Any current browser |
 
 ---
 
 ## 3. How the page is built
 
-`index.html` is a single Design Component file with three parts:
+The site is a single page React app. Sections, in page order: Hero, Marquee, Work (filterable gallery + lightbox), About, Pricing, FAQ, Booking, Studio, Footer.
 
-1. **Template** (between `<x-dc><template>` and `</template></x-dc>`): all sections, inline styles, `{{ holes }}` for text and `<sc-for>` / `<sc-if>` / `<sc-else>` for lists and conditions. Events are written `on-click="method(args)"` (also `on-input`, `on-change`, `on-submit`), boolean attributes `if-disabled="expr"`.
-2. **`PROPS`, `DICT` and `AUTO`** (top of the script): configuration, then every visible string in `en` and `fr`. Edit copy here.
-3. **`class Component`** (bottom of the script): state and behavior (language, gallery filter, lightbox, FAQ, booking form, calendar, sending). `renderVals()` prepares the values the template reads.
-
-`support.js` is the small runtime: it moves `<helmet>` into `<head>`, renders the template, and patches the DOM on each state change without losing focus or typed text.
-
-Sections, in page order: Hero, Work (filterable gallery + lightbox), About, Styles, Pricing, Aftercare, FAQ, Policies, Booking, Studio, Footer.
-
-Styling is inline on purpose. The only global CSS is the `<style>` inside `<helmet>` at the top (resets, fonts, `@keyframes`, reduced motion).
+| File | Role |
+| --- | --- |
+| `src/App.jsx` | Puts the sections together, plays the intro once per session, locks scrolling while the menu or lightbox is open |
+| `src/lib/lang.jsx` | Language context. `useLang()` returns `{ lang, t, setLang }`, where `t` is the current `DICT` entry |
+| `src/components/motion.jsx` | Reusable animation pieces: `Reveal`, `SplitText`, `ClipReveal`, `ParallaxImg`, `Magnetic`, `CountUp` |
+| `src/components/Booking.jsx` | The booking form: steps, validation, calendar, slots, photos, sending |
+| `src/lib/time.js` | Studio time zone helpers, calendar slots and opening days |
 
 ### Design tokens
 
+Defined as CSS variables at the top of `src/styles.css`.
+
 | Token | Value |
 | --- | --- |
-| Background | `#0A0A0A`, panels `#0D0D0D` / `#101010` |
-| Text | `#F2F2F0` main, `#A6A6A2` / `#8C8C88` / `#6E6E6B` muted |
-| Error | `#E0736B` |
-| Success | `#8FBF8F` |
+| Background | `--bg` `#0A0A0A`, surfaces `--surface` `#121211` |
+| Accent | `--accent` `#C8372D` (progress bar, markers) |
 | Headings | Anton, uppercase |
-| Body | Archivo, 300 to 600 |
-| Layout switch | Desktop at 1080px and up, mobile layout below |
+| Body | Archivo, 300 to 700 |
+| Labels | JetBrains Mono |
+| Breakpoints | 700px (tablet) and 1080px (desktop) |
 
 ---
 
-## 4. Configuration (Tweaks panel)
+## 4. Configuration
 
-These are the component props. Edit them in the `PROPS` object at the top of the script in `index.html`.
+Edit the `PROPS` object in `src/config.js`.
 
 | Prop | Section | What it does |
 | --- | --- | --- |
 | `lang` | Site | Default language, `en` or `fr`. The visitor's choice is saved in `localStorage` (`sr_lang`) |
-| `reduceMotion` | Site | Forces animations and parallax off |
 | `bookingUrl` | Booking | Google Apps Script Web app URL. When set, booking is automatic (section 6) |
 | `formEndpoint` | Booking | Fallback email service used only when `bookingUrl` is empty. Default `https://formsubmit.co/ajax/skinreaper_@outlook.com` |
 | `gcalId` | Google Calendar | Optional. Public calendar ID, read only availability |
@@ -147,7 +144,7 @@ The same script answers `GET ?action=busy` so booked days and slots are greyed o
    - Who has access: **Anyone**
 4. Click **Deploy**, then **Authorize access**, choose the Google account, **Advanced**, **Go to project**, **Allow**.
 5. Copy the **Web app URL**. It ends in `/exec`.
-6. Paste it into `bookingUrl` in the `PROPS` object of `index.html`.
+6. Paste it into `bookingUrl` in the `PROPS` object of `src/config.js`.
 7. Check it: opening the URL in a browser must show `{"ok":true,"service":"skinreaper-booking"}`.
 8. Make one test booking.
 
@@ -209,48 +206,57 @@ Fill `gcalId` and `gcalKey`. The calendar must be public. This only blocks times
 
 ## 8. Editing content
 
-All visible text is in `DICT` near the top of the script. Every key exists in both `en` and `fr`.
+All visible text is in `DICT` in `src/dict.js`. Every key exists in both `en` and `fr`.
 
 | To change | Edit |
 | --- | --- |
-| Hero line, about text, FAQ, aftercare, policies | `DICT.en.*` and `DICT.fr.*` |
+| Hero line, about text, FAQ | `DICT.en.*` and `DICT.fr.*` |
 | Prices | `DICT.<lang>.pricing.rates` and the pricing FAQ answer |
 | Studio hours shown on the page | `DICT.<lang>.studio.pending`, `footer.hours`, `book.weekNote`, `book.satNote`, and the "When do you tattoo?" FAQ |
 | Time slots | `DICT.<lang>.book.slotsWeek` and `slotsSat` |
-| Open days | `closed = dow === 0 \|\| dow === 1` in `renderVals()` (calendar), and `OPEN_DAYS` in the script |
+| Open days | `isClosedDow` in `src/lib/time.js` (calendar), and `OPEN_DAYS` in the script |
 | Booking style / size / placement / budget options | `DICT.<lang>.book.styles`, `sizes`, `places`, `budgets` |
 | Acknowledgement checkboxes | `DICT.<lang>.book.acks` |
-| Auto booking wording | `AUTO.en` and `AUTO.fr` (used only when `bookingUrl` is set) |
-| Portfolio photos, order, category, placement label | `this.works` array in the constructor |
-| Gallery filters | `this.catLabels` and the `filters` list in `renderVals()` |
-| Contact email, Instagram | Search for `skinreaper_@outlook.com` and `instagram.com/_skinreaper` |
-| Studio address and map | Studio section, Google Maps link and the OpenStreetMap iframe |
+| Auto booking wording | `AUTO.en` and `AUTO.fr` in `src/dict.js` (used only when `bookingUrl` is set) |
+| Portfolio photos, order, category, placement label | `WORKS` in `src/config.js` |
+| Gallery filters | `CATS` in `src/config.js` |
+| Hero, About and Studio photos | `HERO_IMG`, `ABOUT_IMG`, `STUDIO_IMG` in `src/config.js` |
+| Contact email, Instagram | `EMAIL`, `IG_URL`, `IG_HANDLE` in `src/config.js` |
+| Studio address and map | `DICT.<lang>.studio`, and `MAPS_URL` / `MAP_EMBED` in `src/config.js` |
 
 Slot labels must start with the hour (`11:00`, `11 h`). Labels containing `full day` / `journée complète` count as 8 h, `half day` / `demi` as 4 h, anything else as 2 h. The backend and the calendar blocking read those labels.
 
 ### Adding portfolio photos
 
-1. Put the image in `img/` (for example `img/w11.png`).
-2. Add a line to `this.works`:
+1. Put the image in `public/img/` (for example `public/img/w11.png`).
+2. Add a line to `WORKS` in `src/config.js`:
    ```js
-   { src: 'img/w11.png', cat: 'cyber', place: { en: 'Thigh', fr: 'Cuisse' } },
+   { src: '/img/w11.png', cat: 'cyber', place: { en: 'Thigh', fr: 'Cuisse' } },
    ```
-3. `cat` must be `cyber` or `lettering`, or add a new key to `catLabels` and `filters`.
+3. `cat` must be `cyber` or `lettering`, or add a new key to `CATS`.
 
 ---
 
 ## 9. Animations
 
+All animations use Motion (`motion/react`).
+
 | Where | Effect |
 | --- | --- |
-| Page load | Nav drops in, hero title slides up line by line, hero photo zooms out, hero text fades up in sequence |
-| Scroll | Section titles fade up, gallery photos wipe open and settle, About and Studio photos reveal, rows slide in, hero photo has a light parallax |
-| Booking | Step changes drop in, selected calendar day pops, month grid slides, time slots drop in, green check draws on success |
-| Mobile | Bottom bar slides up |
+| First visit | Brand curtain intro, once per browser session |
+| Whole page | Red scroll progress bar, film grain overlay, buttons roll their label on hover |
+| Navigation | Hides when scrolling down and comes back when scrolling up, a pill slides to the active section, the language pill slides between EN and FR |
+| Hero | Title revealed word by word, photo wipes open then drifts and zooms with the scroll, text fades out as you scroll, magnetic main button, scroll cue |
+| Marquee | Speeds up and reverses with the scroll direction |
+| Work | Sliding filter pill, tiles rearrange smoothly, photos wipe open, hover zoom dims the other tiles, custom "View" cursor on desktop |
+| Lightbox | Slides in the direction you navigate, swipe or drag to change photo, thumbnails, arrow keys and Esc |
+| About and Studio | Photos wipe open with parallax, tags appear one after another |
+| Pricing | Prices count up, cards lift and follow the mouse with a soft light |
+| FAQ | Answers open with a height animation, plus turns into minus |
+| Booking | Progress bar between steps, steps slide in the right direction, selected options, day and time slide between choices, errors shake, photo thumbnails pop, check mark draws on success |
+| Mobile | Menu opens as a circle from the corner with staggered links, bottom bar slides in and out |
 
-Scroll animations use CSS scroll timelines (`animation-timeline: view()`), so there is no scroll JavaScript for reveals. Parallax and the nav background are the only scroll handlers.
-
-`prefers-reduced-motion` and the `reduceMotion` prop shorten all animations and stop parallax.
+Visitors who turn on "reduce motion" in their system settings get the content without movement.
 
 ---
 
@@ -265,15 +271,15 @@ Scroll animations use CSS scroll timelines (`animation-timeline: view()`), so th
 
 ## 11. Deploy
 
-It is a static site. Upload the whole folder (keep `support.js`, `image-slot.js` and `img/` next to `index.html`).
+`npm run build` produces a static site in `dist/`. Any static host works.
 
 | Host | How |
 | --- | --- |
-| Netlify | Drag the folder into Netlify Drop |
-| Cloudflare Pages / Vercel | Connect the repo, build command empty, output directory `.` |
-| GitHub Pages | Push the folder, enable Pages on the branch |
+| Vercel | Connect the repo and set **Root Directory** to `Tatoo_website`. `vercel.json` sets the rest (Vite, `npm run build`, output `dist`) |
+| Netlify / Cloudflare Pages | Base directory `Tatoo_website`, build command `npm run build`, output directory `dist` |
+| Any other host | Run `npm run build` and upload the contents of `dist/` |
 
-On Vercel the repository root is not the site: set **Root Directory** to `Tatoo_website`, Framework Preset **Other**, Build Command empty, Output Directory `.`.
+On Vercel, if the project settings still say Framework Preset **Other** and Output Directory `.` from the old version, clear those overrides (or set them to Vite and `dist`). `vercel.json` already contains the right values.
 
 After deploying:
 
@@ -302,7 +308,7 @@ Technical:
 
 - [ ] `bookingUrl` set and tested
 - [ ] Studio hours match the script `CONFIG`
-- [ ] Favicon and social share image (not included)
+- [ ] Social share image (not included, the favicon is in `public/favicon.svg`)
 - [ ] Privacy note if analytics are added later
 
 ---
@@ -320,15 +326,16 @@ Technical:
 
 | Problem | Cause and fix |
 | --- | --- |
-| Page is blank | `support.js` missing or the path is wrong. Keep it beside `index.html` |
-| Vercel shows 404 NOT_FOUND | Root Directory is not set to `Tatoo_website`, or `index.html` is missing |
-| Gallery images missing | Check the `src` paths in `this.works` and that `img/` was uploaded |
+| Page is blank | Open the browser console. Locally, run `npm install` again. On a host, check that the build ran and the output folder is `dist` |
+| Vercel shows 404 NOT_FOUND | Root Directory is not set to `Tatoo_website`, or the dashboard overrides the output directory with `.` |
+| Gallery images missing | Check the `src` paths in `WORKS` (they start with `/img/`) and that the files are in `public/img/` |
 | "Not delivered" after sending | No `bookingUrl`, or FormSubmit not activated, or testing from a local file. Use the fallback buttons or finish section 6 |
 | Booked slots are not blocked | `bookingUrl` is empty, or the script was not redeployed as **Anyone**, or the browser blocked the request. Open the URL directly to test |
 | Script says authorization required | Redo step 4 of section 6 |
 | Slot says taken but the calendar looks free | An event overlaps the slot, or a Free / transparent event is on a different calendar than `CALENDAR_ID` |
 | Wrong time in the calendar | `TZ` in the script does not match the studio time zone |
-| No scroll animations | Browser without scroll timeline support. The page still works |
+| No animations | "Reduce motion" is turned on in the system settings. This is intended |
+| Intro does not play again | It plays once per browser session. Open a new tab or window to see it again |
 | Languages reset | `localStorage` is blocked. The default `lang` prop is used |
 
 ---

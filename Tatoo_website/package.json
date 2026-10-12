@@ -1,14 +1,22 @@
 {
   "name": "skinreaper",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "description": "Bilingual booking website for Skinreaper, tattoo artist at Velours Tattoo, Montréal",
   "scripts": {
-    "dev": "live-server --host=localhost --port=5500 --open=/ --ignore=node_modules",
-    "start": "serve . --listen 5500 --no-clipboard"
+    "dev": "vite --host localhost --port 5500 --open",
+    "build": "vite build",
+    "preview": "vite preview --host localhost --port 5500",
+    "start": "vite preview --host localhost --port 5500"
+  },
+  "dependencies": {
+    "motion": "^14.1.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "serve": "^14.2.4"
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.4"
   }
 }
