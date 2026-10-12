@@ -10,8 +10,9 @@ Mobile first, dark editorial design, scroll animations, a 3 step booking flow wi
 
 ```
 .
-├── Skinreaper.dc.html     The whole website (markup, styles, copy, logic)
-├── support.js             Runtime that renders the .dc.html file. Keep it next to the page
+├── index.html             The whole website (markup, styles, copy, logic), a Design Component file
+├── support.js             Runtime that renders index.html. Keep it next to the page
+├── vercel.json            Redirects the old /Skinreaper.dc.html address to the home page
 ├── image-slot.js          Drag and drop image placeholder helper (loaded by the page)
 ├── booking-backend.gs     Google Apps Script: calendar availability + automatic booking + emails
 ├── img/                   Create this folder and add the photos (not included in the repo)
@@ -41,9 +42,9 @@ npm run dev
 npm start
 ```
 
-Open `http://localhost:5500/Skinreaper.dc.html`. `npm run dev` opens it in your browser automatically.
+Open `http://localhost:5500`. `npm run dev` opens it in your browser automatically.
 
-Without npm: `python -m http.server 8080`, then `http://localhost:8080/Skinreaper.dc.html`.
+Without npm: `python -m http.server 8080`, then `http://localhost:8080`.
 
 Requirements: an internet connection (Google Fonts: Anton and Archivo) and a recent browser.
 
@@ -56,7 +57,7 @@ Requirements: an internet connection (Google Fonts: Anton and Archivo) and a rec
 
 ## 3. How the page is built
 
-`Skinreaper.dc.html` is a single Design Component file with three parts:
+`index.html` is a single Design Component file with three parts:
 
 1. **Template** (between `<x-dc><template>` and `</template></x-dc>`): all sections, inline styles, `{{ holes }}` for text and `<sc-for>` / `<sc-if>` / `<sc-else>` for lists and conditions. Events are written `on-click="method(args)"` (also `on-input`, `on-change`, `on-submit`), boolean attributes `if-disabled="expr"`.
 2. **`PROPS`, `DICT` and `AUTO`** (top of the script): configuration, then every visible string in `en` and `fr`. Edit copy here.
@@ -84,7 +85,7 @@ Styling is inline on purpose. The only global CSS is the `<style>` inside `<helm
 
 ## 4. Configuration (Tweaks panel)
 
-These are the component props. Edit them in the `PROPS` object at the top of the script in `Skinreaper.dc.html`.
+These are the component props. Edit them in the `PROPS` object at the top of the script in `index.html`.
 
 | Prop | Section | What it does |
 | --- | --- | --- |
@@ -146,7 +147,7 @@ The same script answers `GET ?action=busy` so booked days and slots are greyed o
    - Who has access: **Anyone**
 4. Click **Deploy**, then **Authorize access**, choose the Google account, **Advanced**, **Go to project**, **Allow**.
 5. Copy the **Web app URL**. It ends in `/exec`.
-6. Paste it into `bookingUrl` in the `PROPS` object of `Skinreaper.dc.html`.
+6. Paste it into `bookingUrl` in the `PROPS` object of `index.html`.
 7. Check it: opening the URL in a browser must show `{"ok":true,"service":"skinreaper-booking"}`.
 8. Make one test booking.
 
@@ -264,7 +265,7 @@ Scroll animations use CSS scroll timelines (`animation-timeline: view()`), so th
 
 ## 11. Deploy
 
-It is a static site. Upload the whole folder (keep `support.js` and `img/` next to `Skinreaper.dc.html`).
+It is a static site. Upload the whole folder (keep `support.js`, `image-slot.js` and `img/` next to `index.html`).
 
 | Host | How |
 | --- | --- |
@@ -272,7 +273,7 @@ It is a static site. Upload the whole folder (keep `support.js` and `img/` next 
 | Cloudflare Pages / Vercel | Connect the repo, build command empty, output directory `.` |
 | GitHub Pages | Push the folder, enable Pages on the branch |
 
-Tip: rename `Skinreaper.dc.html` to `index.html` if the host should serve it at the root. Keep the `<script src="./support.js">` path working.
+On Vercel the repository root is not the site: set **Root Directory** to `Tatoo_website`, Framework Preset **Other**, Build Command empty, Output Directory `.`.
 
 After deploying:
 
@@ -319,7 +320,8 @@ Technical:
 
 | Problem | Cause and fix |
 | --- | --- |
-| Page is blank | `support.js` missing or the path is wrong. Keep it beside the `.dc.html` file |
+| Page is blank | `support.js` missing or the path is wrong. Keep it beside `index.html` |
+| Vercel shows 404 NOT_FOUND | Root Directory is not set to `Tatoo_website`, or `index.html` is missing |
 | Gallery images missing | Check the `src` paths in `this.works` and that `img/` was uploaded |
 | "Not delivered" after sending | No `bookingUrl`, or FormSubmit not activated, or testing from a local file. Use the fallback buttons or finish section 6 |
 | Booked slots are not blocked | `bookingUrl` is empty, or the script was not redeployed as **Anyone**, or the browser blocked the request. Open the URL directly to test |
