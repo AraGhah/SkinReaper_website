@@ -1,0 +1,14 @@
+{
+  "name": "skinreaper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bilingual booking website for Skinreaper, tattoo artist at Velours Tattoo, Montréal",
+  "scripts": {
+    "dev": "live-server --host=localhost --port=5500 --open=/Skinreaper.dc.html --ignore=node_modules",
+    "start": "serve . --listen 5500 --no-clipboard"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.4"
+  }
+}

@@ -1,0 +1,1997 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0A0A">
+<title>Skinreaper — Tattoo artist, Montréal</title>
+<meta name="description" content="Skinreaper, tattoo artist at Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal. Cybersigilism, neo-tribal and custom lettering. Book a session online.">
+<script src="./support.js"></script>
+<script src="./image-slot.js"></script>
+</head>
+<body>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: #0A0A0A; }
+  body { margin: 0; background: #0A0A0A; color: #F2F2F0; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; }
+  button { font: inherit; }
+  ::selection { background: #F2F2F0; color: #0A0A0A; }
+  :focus-visible { outline: 2px solid #F2F2F0; outline-offset: 3px; }
+  a:hover, button:not(:disabled):hover { opacity: .82; }
+  textarea::placeholder, input::placeholder { color: #6E6E6B; }
+  [data-slot] { cursor: pointer; }
+  [data-slot][data-over] { outline: 2px dashed #F2F2F0; outline-offset: -8px; }
+
+  /* Page load */
+  .sr-nav-in { animation: sr-drop .8s cubic-bezier(.2,.7,.2,1) both; }
+  .sr-line { display: block; overflow: hidden; padding-bottom: .02em; }
+  .sr-line > span { display: block; animation: sr-line 1s cubic-bezier(.2,.7,.2,1) both; }
+  .sr-zoom { animation: sr-zoom 1.8s cubic-bezier(.2,.7,.2,1) both; }
+  .sr-fade { animation: sr-fade .9s ease both; }
+  .sr-fadein { animation: sr-fadein .3s ease both; }
+
+  /* Booking */
+  .sr-step { animation: sr-drop-sm .5s cubic-bezier(.2,.7,.2,1) both; }
+  .sr-pop { animation: sr-pop .35s cubic-bezier(.3,1.6,.5,1) both; }
+  .sr-month { animation: sr-month .4s ease both; }
+  .sr-slot { animation: sr-drop-sm .4s ease both; }
+  .sr-check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: sr-draw .7s .25s ease forwards; }
+  .sr-spin { animation: sr-spin 1s linear infinite; }
+
+  /* Mobile */
+  .sr-bar { animation: sr-barup .6s .3s cubic-bezier(.2,.7,.2,1) both; }
+  .sr-menu-in { animation: sr-fadein .25s ease both; }
+
+  /* Scroll reveals, only where scroll timelines exist */
+  @supports (animation-timeline: view()) {
+    .rv { animation: sr-up linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .rv-wipe { animation: sr-wipe linear both; animation-timeline: view(); animation-range: entry 0% entry 85%; }
+    .rv-photo { animation: sr-photo linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    .rv-row { animation: sr-row linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+  }
+
+  @keyframes sr-drop { from { transform: translateY(-100%); opacity: 0; } }
+  @keyframes sr-drop-sm { from { transform: translateY(-14px); opacity: 0; } }
+  @keyframes sr-line { from { transform: translateY(105%); } }
+  @keyframes sr-zoom { from { transform: scale(1.18); } }
+  @keyframes sr-fade { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes sr-fadein { from { opacity: 0; } }
+  @keyframes sr-pop { from { transform: scale(.7); } }
+  @keyframes sr-month { from { opacity: 0; transform: translateX(18px); } }
+  @keyframes sr-draw { to { stroke-dashoffset: 0; } }
+  @keyframes sr-spin { to { transform: rotate(360deg); } }
+  @keyframes sr-barup { from { transform: translateY(110%); } }
+  @keyframes sr-up { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
+  @keyframes sr-wipe { from { clip-path: inset(100% 0 0 0); transform: translateY(40px); } to { clip-path: inset(0); transform: none; } }
+  @keyframes sr-photo { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+  @keyframes sr-row { from { opacity: 0; transform: translateX(-32px); } to { opacity: 1; transform: none; } }
+
+  .sr-rm *, .sr-rm *::before, .sr-rm *::after {
+    animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+    animation-timeline: auto !important; transition-duration: .01ms !important;
+  }
+  .sr-rm .sr-spin { animation: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+      animation-timeline: auto !important; transition-duration: .01ms !important;
+    }
+  }
+</style>
+</helmet>
+
+<x-dc><template>
+<div id="top" class="{{ rootClass }}" style="{{ s.root }}">
+
+  <!-- NAV -->
+  <header class="sr-nav-in" style="{{ navStyle }}">
+    <div style="{{ s.navInner }}">
+      <a href="#top" on-click="closeMenu()" style="{{ s.logo }}" aria-label="Skinreaper">Skin<span style="color:#6E6E6B;">reaper</span></a>
+      <sc-if test="d">
+        <nav aria-label="Main" style="display:flex;gap:26px;align-items:center;">
+          <sc-for each="navDesktop" as="l"><a href="#{{ l.id }}" style="{{ s.navLink }}">{{ l.label }}</a></sc-for>
+        </nav>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:{{ d ? 16 : 8 }}px;">
+        <div role="group" aria-label="Language / Langue" style="{{ s.langWrap }}">
+          <button type="button" on-click="setLang('en')" lang="en" aria-pressed="{{ lang === 'en' ? 'true' : 'false' }}" style="{{ lang === 'en' ? s.langOn : s.langOff }}">EN</button>
+          <button type="button" on-click="setLang('fr')" lang="fr" aria-pressed="{{ lang === 'fr' ? 'true' : 'false' }}" style="{{ lang === 'fr' ? s.langOn : s.langOff }}">FR</button>
+        </div>
+        <sc-if test="d"><a href="#book" style="{{ s.navCta }}">{{ t.nav.book }}</a></sc-if>
+        <sc-else><button type="button" on-click="toggleMenu()" aria-expanded="{{ menuOpen ? 'true' : 'false' }}" aria-controls="sr-menu" style="{{ s.menuBtn }}">{{ menuOpen ? t.nav.close : t.nav.menu }}</button></sc-else>
+      </div>
+    </div>
+  </header>
+
+  <sc-if test="!d && menuOpen">
+    <div id="sr-menu" class="sr-menu-in" role="dialog" aria-modal="true" aria-label="{{ t.nav.menu }}" style="{{ s.menu }}">
+      <nav aria-label="Main" style="display:flex;flex-direction:column;">
+        <sc-for each="navMobile" as="l"><a href="#{{ l.id }}" on-click="closeMenu()" class="sr-slot" style="{{ s.menuLink }};animation-delay:{{ i * 0.04 }}s">{{ l.label }}</a></sc-for>
+      </nav>
+      <div style="display:grid;gap:10px;margin-top:40px;">
+        <a href="#book" on-click="closeMenu()" style="{{ s.btn }}">{{ t.hero.cta }}</a>
+        <a href="{{ IG_URL }}" target="_blank" rel="noopener" style="{{ s.btnGhost }}">Instagram</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" style="{{ s.hero }}">
+      <div style="{{ s.wrap }}{{ s.heroGrid }}">
+        <div>
+          <p class="sr-fade" style="{{ s.kicker }};animation-delay:.15s">{{ t.hero.kicker }}</p>
+          <h1 style="{{ s.h1 }}" aria-label="{{ t.hero.lines.join(' ') }}">
+            <sc-for each="t.hero.lines" as="line"><span class="sr-line" aria-hidden="true"><span style="animation-delay:{{ 0.25 + i * 0.12 }}s">{{ line }}</span></span></sc-for>
+          </h1>
+          <p class="sr-fade" style="{{ s.lead }};margin-top:28px;animation-delay:.7s">{{ t.hero.sub }}</p>
+          <div class="sr-fade" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;animation-delay:.85s">
+            <a href="#book" style="{{ s.btn }}">{{ t.hero.cta }}</a>
+            <a href="#work" style="{{ s.btnGhost }}">{{ t.hero.cta2 }}</a>
+          </div>
+          <ul class="sr-fade" style="{{ s.heroMeta }};animation-delay:1s">
+            <sc-for each="t.hero.meta" as="m"><li>{{ m }}</li></sc-for>
+          </ul>
+        </div>
+        <div style="{{ s.heroMedia }}">
+          <div style="{{ s.heroPar }}">
+            <sc-if test="heroImg.missing">
+              <div data-slot="{{ heroImg.path }}" role="button" tabindex="0" aria-label="{{ t.slot.drop }}" style="{{ s.slot }}"><span>{{ t.slot.drop }}</span><span style="opacity:.6">{{ heroImg.path }}</span></div>
+            </sc-if>
+            <sc-else><img class="sr-zoom" src="{{ heroImg.src }}" alt="{{ t.hero.alt }}" fetchpriority="high" style="{{ s.cover }}"></sc-else>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.work.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.work.title }}</h2>
+            <p class="rv" style="{{ s.body }};margin-top:20px;max-width:46ch;">{{ t.work.intro }}</p>
+          </div>
+          <div role="group" aria-label="{{ t.work.filter }}" style="display:flex;flex-wrap:wrap;gap:8px;">
+            <sc-for each="filters" as="fl"><button type="button" on-click="setFilter(fl.key)" aria-pressed="{{ fl.on ? 'true' : 'false' }}" style="{{ fl.on ? s.chipOn : s.chipOff }}">{{ fl.label }}<span style="opacity:.5;margin-left:8px;">{{ fl.count }}</span></button></sc-for>
+          </div>
+        </div>
+        <div style="{{ s.gallery }}">
+          <sc-for each="gallery" as="w">
+            <figure data-key="{{ w.path }}" class="rv-wipe" style="{{ s.figure }}">
+              <sc-if test="w.missing">
+                <div data-slot="{{ w.path }}" role="button" tabindex="0" aria-label="{{ t.slot.drop }}: {{ w.path }}" style="{{ s.slot }};aspect-ratio:4/5;"><span>{{ t.slot.drop }}</span><span style="opacity:.6">{{ w.path }}</span></div>
+              </sc-if>
+              <sc-else>
+                <button type="button" on-click="openLightbox(i)" aria-label="{{ t.work.open }}: {{ w.alt }}" style="{{ s.figBtn }}"><img src="{{ w.src }}" alt="{{ w.alt }}" loading="lazy" style="display:block;width:100%;height:auto;"></button>
+              </sc-else>
+              <figcaption style="{{ s.figcap }}"><span>{{ w.place }}</span><span>{{ w.catLabel }}</span></figcaption>
+            </figure>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" style="{{ s.section }}">
+      <div style="{{ s.wrap }}{{ s.aboutGrid }}">
+        <div class="rv-photo" style="{{ s.aboutMedia }}">
+          <sc-if test="aboutImg.missing">
+            <div data-slot="{{ aboutImg.path }}" role="button" tabindex="0" aria-label="{{ t.slot.drop }}" style="{{ s.slot }}"><span>{{ t.slot.drop }}</span><span style="opacity:.6">{{ aboutImg.path }}</span></div>
+          </sc-if>
+          <sc-else><img src="{{ aboutImg.src }}" alt="{{ t.about.alt }}" loading="lazy" style="{{ s.cover }}"></sc-else>
+        </div>
+        <div>
+          <p class="rv" style="{{ s.kicker }}">{{ t.about.kicker }}</p>
+          <h2 class="rv" style="{{ s.h2 }}">{{ t.about.title }}</h2>
+          <p class="rv" style="{{ s.lead }};margin-top:32px;">{{ t.about.lead }}</p>
+          <sc-for each="t.about.body" as="para"><p class="rv" style="{{ s.body }};margin-top:20px;max-width:60ch;">{{ para }}</p></sc-for>
+          <dl style="{{ s.facts }}">
+            <sc-for each="t.about.facts" as="fact">
+              <div class="rv-row" style="{{ s.fact }}">
+                <dt style="{{ s.label }};margin-bottom:8px;">{{ fact.k }}</dt>
+                <dd style="margin:0;font-size:16px;color:#F2F2F0;">{{ fact.v }}</dd>
+              </div>
+            </sc-for>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- STYLES -->
+    <section id="styles" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.styles.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.styles.title }}</h2>
+          </div>
+          <p class="rv" style="{{ s.body }};max-width:40ch;">{{ t.styles.intro }}</p>
+        </div>
+        <ol style="list-style:none;margin:0;padding:0;border-top:1px solid #1F1F1E;">
+          <sc-for each="t.styles.items" as="it">
+            <li class="rv-row" style="{{ s.row }}">
+              <span style="{{ s.rowNum }}">0{{ i + 1 }}</span>
+              <h3 style="{{ s.h3 }};font-size:{{ d ? 44 : 30 }}px;">{{ it.n }}</h3>
+              <p style="{{ s.body }};{{ d ? '' : 'grid-column:2;' }}">{{ it.d }}</p>
+            </li>
+          </sc-for>
+        </ol>
+        <div class="rv" style="margin-top:48px;">
+          <p style="{{ s.label }}">{{ t.styles.noTitle }}</p>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;">
+            <sc-for each="t.styles.no" as="n"><li style="{{ s.tag }}">{{ n }}</li></sc-for>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.pricing.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.pricing.title }}</h2>
+          </div>
+          <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.pricing.intro }}</p>
+        </div>
+        <div style="{{ s.rates }}">
+          <sc-for each="t.pricing.rates" as="r">
+            <div class="rv" style="{{ s.rate }}">
+              <div>
+                <p style="{{ s.label }};margin:0 0 6px;">{{ r.k }}</p>
+                <p style="{{ s.small }}">{{ r.d }}</p>
+              </div>
+              <p style="{{ s.rateV }}">{{ r.v }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <p class="rv" style="{{ s.small }};margin-top:24px;max-width:70ch;">{{ t.pricing.note }}</p>
+      </div>
+    </section>
+
+    <!-- AFTERCARE -->
+    <section id="aftercare" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.aftercare.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.aftercare.title }}</h2>
+          </div>
+          <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.aftercare.intro }}</p>
+        </div>
+        <ol style="{{ s.care }}">
+          <sc-for each="t.aftercare.steps" as="c">
+            <li class="rv" style="border-top:1px solid #1F1F1E;padding-top:22px;">
+              <p style="{{ s.rowNum }};margin:0 0 14px;">0{{ i + 1 }}</p>
+              <h3 style="{{ s.h3 }};font-size:{{ d ? 30 : 26 }}px;">{{ c.t }}</h3>
+              <p style="{{ s.body }};margin-top:12px;">{{ c.d }}</p>
+            </li>
+          </sc-for>
+        </ol>
+        <div class="rv" role="note" style="{{ s.warn }}">
+          <span aria-hidden="true" style="font-family:Anton,Impact,sans-serif;font-size:28px;line-height:1;color:#E0736B;">!</span>
+          <div>
+            <p style="{{ s.label }};color:#E0736B;margin-bottom:8px;">{{ t.aftercare.warnTitle }}</p>
+            <p style="{{ s.body }};color:#D8D8D4;">{{ t.aftercare.warn }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.faq.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.faq.title }}</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid #1F1F1E;max-width:1000px;">
+          <sc-for each="t.faq.items" as="q">
+            <div class="rv-row" style="border-bottom:1px solid #1F1F1E;">
+              <h3 style="margin:0;">
+                <button type="button" id="faq-q{{ i }}" on-click="toggleFaq(i)" aria-expanded="{{ faqOpen === i ? 'true' : 'false' }}" aria-controls="faq-a{{ i }}" style="{{ s.faqBtn }}">
+                  <span>{{ q.q }}</span>
+                  <span aria-hidden="true" style="flex:none;font-size:26px;font-weight:300;transition:transform .25s;transform:rotate({{ faqOpen === i ? 45 : 0 }}deg);">+</span>
+                </button>
+              </h3>
+              <sc-if test="faqOpen === i">
+                <div id="faq-a{{ i }}" role="region" aria-labelledby="faq-q{{ i }}" class="sr-step" style="padding:0 0 28px;max-width:70ch;">
+                  <p style="{{ s.body }}">{{ q.a }}</p>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLICIES -->
+    <section id="policies" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.policies.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.policies.title }}</h2>
+          </div>
+          <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.policies.intro }}</p>
+        </div>
+        <div style="{{ s.policies }}">
+          <sc-for each="t.policies.items" as="po">
+            <div class="rv" style="padding:28px 0;border-top:1px solid #1F1F1E;">
+              <h3 style="{{ s.h3 }};font-size:{{ d ? 28 : 24 }}px;">{{ po.t }}</h3>
+              <p style="{{ s.body }};margin-top:12px;">{{ po.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="book" style="{{ s.section }};background:#0D0D0D;">
+      <div style="{{ s.wrap }}{{ s.bookGrid }}">
+        <div style="{{ s.bookAside }}">
+          <p class="rv" style="{{ s.kicker }}">{{ t.book.kicker }}</p>
+          <h2 class="rv" style="{{ s.h2 }}">{{ t.book.title }}</h2>
+          <p class="rv" style="{{ s.body }};margin-top:24px;max-width:42ch;">{{ bk.intro }}</p>
+          <sc-if test="d && !status">
+            <div style="margin-top:48px;">
+              <p style="{{ s.label }}">{{ t.book.summary }}</p>
+              <dl style="margin:0;border-top:1px solid #1F1F1E;">
+                <sc-for each="summary" as="row">
+                  <div style="{{ s.sumRow }}"><dt style="color:#6E6E6B;">{{ row.k }}</dt><dd style="margin:0;color:{{ row.empty ? '#3A3A38' : '#D8D8D4' }};overflow-wrap:anywhere;">{{ row.v }}</dd></div>
+                </sc-for>
+              </dl>
+            </div>
+          </sc-if>
+        </div>
+
+        <div id="book-form" style="{{ s.formWrap }}">
+          <sc-if test="status">
+            <div data-key="status-{{ status }}" class="sr-step" aria-live="polite" style="{{ s.statusBox }}">
+              <sc-if test="status === 'sending'">
+                <div style="display:flex;align-items:center;gap:16px;padding:40px 0;">
+                  <svg class="sr-spin" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#2A2A28" stroke-width="2"></circle><path d="M22 12a10 10 0 0 0-10-10" stroke="#F2F2F0" stroke-width="2"></path></svg>
+                  <p style="{{ s.lead }}">{{ bk.sending }}</p>
+                </div>
+              </sc-if>
+              <sc-if test="status === 'booked' || status === 'delivered'">
+                <svg class="sr-check" width="64" height="64" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" stroke="#8FBF8F" stroke-width="1"></circle><path d="M7 12.5l3.2 3.2L17 9" stroke="#8FBF8F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <h3 style="{{ s.h3 }};font-size:{{ d ? 52 : 40 }}px;margin-top:24px;">{{ status === 'booked' ? t.book.bookedTitle : t.book.deliveredTitle }}</h3>
+                <p style="{{ s.body }};margin-top:16px;max-width:52ch;">{{ status === 'booked' ? t.book.bookedText : t.book.deliveredText }}</p>
+              </sc-if>
+              <sc-if test="status === 'failed'">
+                <h3 style="{{ s.h3 }};font-size:{{ d ? 52 : 40 }}px;color:#E0736B;">{{ t.book.failedTitle }}</h3>
+                <p style="{{ s.body }};margin-top:16px;max-width:52ch;">{{ t.book.failedText }}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;">
+                  <a href="{{ mailtoHref }}" style="{{ s.btn }}">{{ t.book.mailMe }}</a>
+                  <a href="{{ IG_URL }}" target="_blank" rel="noopener" style="{{ s.btnGhost }}">{{ t.book.dm }}</a>
+                  <button type="button" on-click="copyRequest()" style="{{ s.btnGhost }}">{{ copied ? t.book.copied : t.book.copy }}</button>
+                </div>
+              </sc-if>
+              <sc-if test="status !== 'sending'">
+                <dl style="margin:36px 0 0;border-top:1px solid #1F1F1E;">
+                  <sc-for each="summary" as="row">
+                    <div style="{{ s.sumRow }}"><dt style="color:#6E6E6B;">{{ row.k }}</dt><dd style="margin:0;color:#D8D8D4;overflow-wrap:anywhere;">{{ row.v }}</dd></div>
+                  </sc-for>
+                </dl>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;">
+                  <sc-if test="status === 'failed'"><button type="button" on-click="retry()" style="{{ s.btnGhost }}">← {{ t.book.edit }}</button></sc-if>
+                  <button type="button" on-click="newRequest()" style="{{ s.btnGhost }}">{{ t.book.again }}</button>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+          <sc-else>
+            <ol aria-label="{{ t.book.title }}" style="{{ s.stepper }}">
+              <sc-for each="stepper" as="sp"><li aria-current="{{ sp.on ? 'step' : 'false' }}" style="{{ sp.style }}"><span style="opacity:.6;">0{{ i + 1 }}</span> {{ sp.label }}</li></sc-for>
+            </ol>
+            <form on-submit="submitStep()" novalidate>
+              <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" value="{{ f.company }}" on-input="setField('company')" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+              <div data-key="step-{{ step }}" class="sr-step">
+
+                <sc-if test="step === 1">
+                  <div style="{{ s.field }}">
+                    <label for="f-idea" style="{{ s.label }}">{{ t.book.idea }} <span style="{{ s.req }}">*</span></label>
+                    <textarea id="f-idea" rows="5" on-input="setField('idea')" placeholder="{{ t.book.ideaPh }}" aria-invalid="{{ err.idea ? 'true' : 'false' }}" style="{{ err.idea ? s.inputErr : s.input }};resize:vertical;min-height:140px;line-height:1.5;">{{ f.idea }}</textarea>
+                    <sc-if test="err.idea"><p role="alert" style="{{ s.err }}">{{ err.idea }}</p></sc-if>
+                  </div>
+                  <sc-for each="groups1" as="g">
+                    <fieldset style="{{ s.fieldset }}" aria-invalid="{{ err[g.key] ? 'true' : 'false' }}">
+                      <legend style="{{ s.label }}">{{ g.label }} <span style="{{ s.req }}">*</span></legend>
+                      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <sc-for each="g.options" as="o"><button type="button" on-click="pick(g.key, o.i)" aria-pressed="{{ o.on ? 'true' : 'false' }}" style="{{ o.on ? s.chipOn : s.chipOff }}">{{ o.label }}</button></sc-for>
+                      </div>
+                      <sc-if test="err[g.key]"><p role="alert" style="{{ s.err }}">{{ err[g.key] }}</p></sc-if>
+                    </fieldset>
+                  </sc-for>
+                  <div style="{{ s.field }}">
+                    <span style="{{ s.label }}">{{ t.book.refs }}</span>
+                    <p style="{{ s.small }};margin:-4px 0 14px;">{{ t.book.refsHint }}</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+                      <sc-for each="photos" as="ph">
+                        <div style="position:relative;width:88px;height:88px;">
+                          <img src="{{ ph.thumb }}" alt="{{ ph.name }}" style="width:100%;height:100%;object-fit:cover;display:block;border:1px solid #2A2A28;">
+                          <button type="button" on-click="removePhoto(i)" aria-label="{{ t.book.remove }} {{ ph.name }}" style="{{ s.photoX }}">✕</button>
+                        </div>
+                      </sc-for>
+                      <sc-if test="photos.length < 4">
+                        <label style="{{ s.btnGhost }};position:relative;">
+                          + {{ t.book.addPhotos }}
+                          <input type="file" accept="image/*" multiple on-change="addPhotos()" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;">
+                        </label>
+                      </sc-if>
+                    </div>
+                    <sc-if test="photoBusy"><p style="{{ s.small }};margin-top:10px;">{{ t.book.photoBusy }}</p></sc-if>
+                    <sc-if test="photoMsg"><p role="alert" style="{{ s.err }}">{{ photoMsg }}</p></sc-if>
+                  </div>
+                </sc-if>
+
+                <sc-if test="step === 2">
+                  <div style="{{ s.field }}">
+                    <span style="{{ s.label }}">{{ t.book.when }} <span style="{{ s.req }}">*</span></span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;">
+                      <button type="button" on-click="shiftMonth(-1)" if-disabled="!cal.canPrev" aria-label="{{ t.book.prevMonth }}" style="{{ cal.canPrev ? s.calNav : s.calNavOff }}">←</button>
+                      <p aria-live="polite" style="{{ s.h3 }};font-size:{{ d ? 28 : 24 }}px;">{{ cal.title }}</p>
+                      <button type="button" on-click="shiftMonth(1)" if-disabled="!cal.canNext" aria-label="{{ t.book.nextMonth }}" style="{{ cal.canNext ? s.calNav : s.calNavOff }}">→</button>
+                    </div>
+                    <div data-key="m-{{ cal.key }}" class="sr-month">
+                      <div aria-hidden="true" style="{{ s.calGrid }}">
+                        <sc-for each="t.book.dows" as="w"><span style="{{ s.dow }}">{{ w }}</span></sc-for>
+                      </div>
+                      <div style="{{ s.calGrid }}">
+                        <sc-for each="cal.cells" as="c">
+                          <sc-if test="c.blank"><span></span></sc-if>
+                          <sc-else><button type="button" on-click="pickDate(c.key)" if-disabled="c.disabled" aria-pressed="{{ c.selected ? 'true' : 'false' }}" aria-label="{{ c.aria }}" class="{{ c.selected ? 'sr-pop' : '' }}" style="{{ c.style }}">{{ c.day }}</button></sc-else>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <p style="{{ s.small }};margin-top:16px;">{{ t.book.weekNote }} {{ t.book.satNote }} {{ t.book.tzNote }}</p>
+                    <sc-if test="busyState === 'loading'"><p style="{{ s.small }};margin-top:8px;">{{ t.book.loading }}</p></sc-if>
+                    <sc-if test="busyState === 'error'"><p style="{{ s.small }};margin-top:8px;color:#E0736B;">{{ t.book.busyErr }}</p></sc-if>
+                    <sc-if test="takenMsg"><p role="alert" style="{{ s.err }}">{{ t.book.taken }}</p></sc-if>
+                  </div>
+                  <div style="{{ s.field }}">
+                    <span style="{{ s.label }}">{{ t.book.pickSlot }}<sc-if test="dateLabel"> · <span style="color:#F2F2F0;">{{ dateLabel }}</span></sc-if></span>
+                    <sc-if test="!date"><p style="{{ s.small }}">{{ t.book.noDay }}</p></sc-if>
+                    <sc-else>
+                      <div data-key="slots-{{ date }}" style="{{ slotGrid }}">
+                        <sc-for each="slots" as="sl"><button type="button" class="sr-slot" on-click="pickSlot(sl.i)" if-disabled="sl.blocked" aria-pressed="{{ sl.on ? 'true' : 'false' }}" style="{{ sl.style }};animation-delay:{{ i * 0.05 }}s">{{ sl.label }}<sc-if test="sl.blocked"><span style="display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px;">{{ t.book.full }}</span></sc-if></button></sc-for>
+                      </div>
+                    </sc-else>
+                    <sc-if test="err.date"><p role="alert" style="{{ s.err }}">{{ err.date }}</p></sc-if>
+                  </div>
+                  <sc-for each="groups2" as="g">
+                    <fieldset style="{{ s.fieldset }}" aria-invalid="{{ err[g.key] ? 'true' : 'false' }}">
+                      <legend style="{{ s.label }}">{{ g.label }} <span style="{{ s.req }}">*</span></legend>
+                      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <sc-for each="g.options" as="o"><button type="button" on-click="pick(g.key, o.i)" aria-pressed="{{ o.on ? 'true' : 'false' }}" style="{{ o.on ? s.chipOn : s.chipOff }}">{{ o.label }}</button></sc-for>
+                      </div>
+                      <sc-if test="err[g.key]"><p role="alert" style="{{ s.err }}">{{ err[g.key] }}</p></sc-if>
+                    </fieldset>
+                  </sc-for>
+                </sc-if>
+
+                <sc-if test="step === 3">
+                  <sc-for each="groups3a" as="g">
+                    <fieldset style="{{ s.fieldset }}" aria-invalid="{{ err[g.key] ? 'true' : 'false' }}">
+                      <legend style="{{ s.label }}">{{ g.label }} <span style="{{ s.req }}">*</span></legend>
+                      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <sc-for each="g.options" as="o"><button type="button" on-click="pick(g.key, o.i)" aria-pressed="{{ o.on ? 'true' : 'false' }}" style="{{ o.on ? s.chipOn : s.chipOff }}">{{ o.label }}</button></sc-for>
+                      </div>
+                      <sc-if test="err[g.key]"><p role="alert" style="{{ s.err }}">{{ err[g.key] }}</p></sc-if>
+                    </fieldset>
+                  </sc-for>
+                  <sc-if test="blocked">
+                    <div role="alert" class="sr-step" style="{{ s.warn }};margin:0 0 32px;">
+                      <span aria-hidden="true" style="font-family:Anton,Impact,sans-serif;font-size:28px;line-height:1;color:#E0736B;">!</span>
+                      <p style="{{ s.body }};color:#D8D8D4;">{{ t.book.pregnantBlock }}</p>
+                    </div>
+                  </sc-if>
+                  <sc-else>
+                    <fieldset style="{{ s.fieldset }}" aria-invalid="{{ err.acks ? 'true' : 'false' }}">
+                      <legend style="{{ s.label }}">{{ t.book.acksTitle }} <span style="{{ s.req }}">*</span></legend>
+                      <sc-for each="acks" as="a">
+                        <label style="{{ s.check }}">
+                          <input type="checkbox" if-checked="a.on" on-change="toggleAck(i)" style="{{ s.checkbox }}">
+                          <span>{{ a.label }}</span>
+                        </label>
+                      </sc-for>
+                      <sc-if test="err.acks"><p role="alert" style="{{ s.err }}">{{ err.acks }}</p></sc-if>
+                    </fieldset>
+                    <div style="{{ s.grid2 }}">
+                      <sc-for each="inputs" as="inp">
+                        <div style="{{ s.field }}">
+                          <label for="f-{{ inp.key }}" style="{{ s.label }}">{{ inp.label }} <span style="{{ s.req }}">{{ inp.req ? '*' : '(' + t.book.optional + ')' }}</span></label>
+                          <input id="f-{{ inp.key }}" type="{{ inp.type }}" autocomplete="{{ inp.auto }}" inputmode="{{ inp.mode }}" placeholder="{{ inp.ph }}" value="{{ inp.value }}" on-input="setField(inp.key)" aria-invalid="{{ inp.err ? 'true' : 'false' }}" style="{{ inp.err ? s.inputErr : s.input }}">
+                          <sc-if test="inp.err"><p role="alert" style="{{ s.err }}">{{ inp.err }}</p></sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <sc-for each="groups3b" as="g">
+                      <fieldset style="{{ s.fieldset }}" aria-invalid="{{ err[g.key] ? 'true' : 'false' }}">
+                        <legend style="{{ s.label }}">{{ g.label }} <span style="{{ s.req }}">*</span></legend>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                          <sc-for each="g.options" as="o"><button type="button" on-click="pick(g.key, o.i)" aria-pressed="{{ o.on ? 'true' : 'false' }}" style="{{ o.on ? s.chipOn : s.chipOff }}">{{ o.label }}</button></sc-for>
+                        </div>
+                        <sc-if test="err[g.key]"><p role="alert" style="{{ s.err }}">{{ err[g.key] }}</p></sc-if>
+                      </fieldset>
+                    </sc-for>
+                    <p style="{{ s.small }};margin:-8px 0 32px;">{{ t.book.privacy }}</p>
+                  </sc-else>
+                </sc-if>
+
+              </div>
+              <sc-if test="hasErr"><p role="alert" style="{{ s.err }};margin:0 0 16px;">{{ t.book.err.fix }}</p></sc-if>
+              <div style="{{ s.formBar }}">
+                <sc-if test="step > 1"><button type="button" on-click="prevStep()" style="{{ s.btnGhost }};padding:0 18px;">← {{ t.book.back }}</button></sc-if>
+                <sc-else><span></span></sc-else>
+                <span style="{{ s.small }};{{ d ? '' : 'display:none;' }}">{{ t.book.stepWord }} {{ step }} / 3</span>
+                <button type="submit" if-disabled="blocked" style="{{ blocked ? s.btnOff : s.btn }};padding:0 22px;">{{ step === 3 ? bk.send : t.book.next + ' →' }}</button>
+              </div>
+            </form>
+          </sc-else>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDIO -->
+    <section id="studio" style="{{ s.section }}">
+      <div style="{{ s.wrap }}">
+        <div style="{{ s.head }}">
+          <div>
+            <p class="rv" style="{{ s.kicker }}">{{ t.studio.kicker }}</p>
+            <h2 class="rv" style="{{ s.h2 }}">{{ t.studio.title }}</h2>
+          </div>
+          <p class="rv" style="{{ s.body }};max-width:40ch;">{{ t.studio.note }}</p>
+        </div>
+        <div style="{{ s.studioGrid }}">
+          <div class="rv-photo" style="{{ s.studioMedia }}">
+            <sc-if test="studioImg.missing">
+              <div data-slot="{{ studioImg.path }}" role="button" tabindex="0" aria-label="{{ t.slot.drop }}" style="{{ s.slot }}"><span>{{ t.slot.drop }}</span><span style="opacity:.6">{{ studioImg.path }}</span></div>
+            </sc-if>
+            <sc-else><img src="{{ studioImg.src }}" alt="{{ t.studio.alt }}" loading="lazy" style="{{ s.cover }}"></sc-else>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:32px;">
+            <div class="rv" style="display:grid;grid-template-columns:{{ d ? '1fr 1fr' : '1fr' }};gap:28px;">
+              <div>
+                <p style="{{ s.label }}">{{ t.studio.addressTitle }}</p>
+                <address style="font-style:normal;font-size:18px;line-height:1.6;color:#F2F2F0;">
+                  <sc-for each="t.studio.address" as="ln"><span style="display:block;">{{ ln }}</span></sc-for>
+                </address>
+              </div>
+              <div>
+                <p style="{{ s.label }}">{{ t.studio.hoursTitle }}</p>
+                <p style="{{ s.body }}">{{ t.studio.pending }}</p>
+              </div>
+            </div>
+            <iframe class="rv" title="{{ t.studio.mapTitle }}" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.5790%2C45.5110%2C-73.5640%2C45.5180&amp;layer=mapnik&amp;marker=45.5145%2C-73.5715" loading="lazy" referrerpolicy="no-referrer" style="{{ s.map }}"></iframe>
+            <div class="rv" style="display:flex;flex-wrap:wrap;gap:10px;">
+              <a href="{{ MAPS_URL }}" target="_blank" rel="noopener" style="{{ s.btn }}">{{ t.studio.directions }}</a>
+              <a href="#book" style="{{ s.btnGhost }}">{{ t.hero.cta }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="{{ s.footer }}">
+    <div style="{{ s.wrap }}">
+      <div style="display:grid;grid-template-columns:{{ d ? '2fr 1fr 1fr 1fr' : '1fr 1fr' }};gap:{{ d ? 40 : 28 }}px;">
+        <div style="{{ d ? '' : 'grid-column:1 / -1;' }}">
+          <p style="{{ s.h3 }};font-size:28px;">Skinreaper</p>
+          <p style="{{ s.small }};margin-top:12px;max-width:34ch;">{{ t.footer.tagline }}</p>
+        </div>
+        <div>
+          <p style="{{ s.label }}">{{ t.footer.contact }}</p>
+          <a href="mailto:{{ EMAIL }}" style="{{ s.footLink }}">{{ EMAIL }}</a>
+          <a href="{{ IG_URL }}" target="_blank" rel="noopener" style="{{ s.footLink }}">@_skinreaper</a>
+        </div>
+        <div>
+          <p style="{{ s.label }}">{{ t.footer.hoursTitle }}</p>
+          <p style="{{ s.small }}">{{ t.footer.hours }}</p>
+        </div>
+        <div>
+          <p style="{{ s.label }}">{{ t.footer.studioTitle }}</p>
+          <a href="{{ MAPS_URL }}" target="_blank" rel="noopener" style="{{ s.footLink }}">Velours Tattoo<br>3455 Saint-Laurent</a>
+        </div>
+      </div>
+      <p aria-hidden="true" style="{{ s.giant }}">Skinreaper</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid #1A1A1A;padding-top:24px;">
+        <p style="{{ s.small }}">{{ t.footer.rights }}</p>
+        <p style="{{ s.small }}">{{ t.footer.age }} · <a href="#top" style="color:#A6A6A2;">{{ t.footer.top }} ↑</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <sc-if test="lb">
+    <div class="sr-fadein" role="dialog" aria-modal="true" aria-label="{{ t.work.title }}" style="{{ s.lb }}">
+      <div style="{{ s.lbTop }}">
+        <span style="{{ s.small }}">{{ lb.n }} {{ t.work.of }} {{ lb.total }} · {{ lb.place }} · {{ lb.catLabel }}</span>
+        <button type="button" on-click="closeLightbox()" style="{{ s.menuBtn }}">{{ t.work.close }} ✕</button>
+      </div>
+      <div on-click="lbBackdrop()" style="{{ s.lbStage }}">
+        <sc-if test="lb.missing">
+          <div data-slot="{{ lb.path }}" role="button" tabindex="0" style="{{ s.slot }};max-width:520px;aspect-ratio:4/5;height:auto;"><span>{{ t.slot.drop }}</span><span style="opacity:.6">{{ lb.path }}</span></div>
+        </sc-if>
+        <sc-else><img data-key="{{ lb.path }}" class="sr-fadein" src="{{ lb.src }}" alt="{{ lb.alt }}" style="max-width:100%;max-height:100%;object-fit:contain;display:block;"></sc-else>
+      </div>
+      <div style="{{ s.lbBar }}">
+        <button type="button" on-click="stepLightbox(-1)" style="{{ s.btnGhost }}">← {{ t.work.prev }}</button>
+        <button type="button" on-click="stepLightbox(1)" style="{{ s.btnGhost }}">{{ t.work.next }} →</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <sc-if test="showBar">
+    <nav class="sr-bar" aria-label="{{ t.bar.label }}" style="{{ s.bar }}">
+      <a href="#book" style="{{ s.barMain }}">{{ t.bar.book }}</a>
+      <a href="{{ IG_URL }}" target="_blank" rel="noopener" style="{{ s.barBtn }}">{{ t.bar.instagram }}</a>
+      <a href="{{ MAPS_URL }}" target="_blank" rel="noopener" style="{{ s.barBtn }}">{{ t.bar.map }}</a>
+    </nav>
+  </sc-if>
+</div>
+</template></x-dc>
+
+<script>
+/* ------------------------------------------------------------------ *
+ * PROPS — site configuration (the "Tweaks" of the component)
+ * ------------------------------------------------------------------ */
+const PROPS = {
+  lang: 'en',            // default language, 'en' or 'fr'
+  reduceMotion: false,   // force animations and parallax off
+  bookingUrl: '',        // Google Apps Script Web app URL (ends in /exec). Enables automatic booking
+  formEndpoint: 'https://formsubmit.co/ajax/skinreaper_@outlook.com', // fallback when bookingUrl is empty
+  gcalId: '',            // optional public Google Calendar ID (read only availability)
+  gcalKey: ''            // optional Google API key used with gcalId
+};
+
+const EMAIL = 'skinreaper_@outlook.com';
+const IG_URL = 'https://instagram.com/_skinreaper';
+const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Velours+Tattoo+3455+Saint-Laurent+Blvd+Montreal+QC';
+const LOCATION = 'Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal, QC H2X 2T6';
+const TZ = 'America/Toronto';
+
+/* ------------------------------------------------------------------ *
+ * DICT — every visible string, English and French
+ * ------------------------------------------------------------------ */
+const DICT = {
+  en: {
+    meta: {
+      title: 'Skinreaper — Tattoo artist, Montréal',
+      desc: 'Skinreaper, tattoo artist at Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal. Cybersigilism, neo-tribal and custom lettering. Book a session online.'
+    },
+    nav: { work: 'Work', about: 'About', styles: 'Styles', pricing: 'Pricing', aftercare: 'Aftercare', faq: 'FAQ', policies: 'Policies', book: 'Book', studio: 'Studio', menu: 'Menu', close: 'Close' },
+    hero: {
+      kicker: 'Tattoo artist · Velours Tattoo · Montréal',
+      lines: ['Sharp lines', 'for dark', 'stories'],
+      sub: 'Cybersigilism, neo-tribal and custom lettering, drawn for your body and nobody else’s.',
+      cta: 'Book a session',
+      cta2: 'See the work',
+      meta: ['Tuesday to Saturday', 'By appointment', '18+ only'],
+      alt: 'Tattoo by Skinreaper'
+    },
+    slot: { drop: 'Drop a photo here' },
+    work: {
+      kicker: '01 — Work',
+      title: 'Selected work',
+      intro: 'Fresh and healed pieces from the studio. Tap a photo to see it full size.',
+      filter: 'Filter the work',
+      all: 'All',
+      open: 'Open photo',
+      alt: 'Tattoo by Skinreaper',
+      prev: 'Previous',
+      next: 'Next',
+      close: 'Close',
+      of: 'of'
+    },
+    about: {
+      kicker: '02 — About',
+      title: 'The artist',
+      lead: 'I’m Skinreaper. I tattoo out of Velours Tattoo on Saint-Laurent, and I draw every piece for the person wearing it.',
+      body: [
+        'My work lives between cybersigilism, neo-tribal and lettering: sharp, flowing black lines that follow the muscles and bones instead of sitting on top of them.',
+        'I start from your idea, your references and your placement, then build the design around the way you move. No copies, no flash recycled from someone else.'
+      ],
+      facts: [
+        { k: 'Studio', v: 'Velours Tattoo, Montréal' },
+        { k: 'Focus', v: 'Cybersigilism, lettering' },
+        { k: 'Languages', v: 'English, French' }
+      ],
+      alt: 'Skinreaper at work'
+    },
+    styles: {
+      kicker: '03 — Styles',
+      title: 'What I tattoo',
+      intro: 'Black ink, line-driven, made to fit the body. Not sure your idea fits? Ask anyway.',
+      items: [
+        { n: 'Cybersigilism', d: 'Thin, sharp, symmetrical lines with spikes and curves that wrap around the body. Clean black, no shading noise.' },
+        { n: 'Neo-tribal', d: 'Bolder flowing shapes inspired by tribal work, redrawn with a modern, aggressive edge.' },
+        { n: 'Lettering & script', d: 'Custom words, names and dates. Gothic, chrome, handwritten or fully invented letterforms.' },
+        { n: 'Fine line blackwork', d: 'Small to medium pieces with clean detail: symbols, ornaments, small sigils.' }
+      ],
+      noTitle: 'What I don’t take',
+      no: ['Realistic portraits', 'Copies of another artist’s custom work', 'Large solid cover-ups', 'Hate symbols']
+    },
+    pricing: {
+      kicker: '04 — Pricing',
+      title: 'Pricing',
+      intro: 'Every piece is quoted after I read your request. These rates are a starting point.',
+      rates: [
+        { k: 'Minimum', v: '$120', d: 'Small, simple pieces' },
+        { k: 'Hourly', v: '$150/h', d: 'Most small to medium work' },
+        { k: 'Half day', v: '$500', d: '4 hours, Saturday' },
+        { k: 'Full day', v: '$900', d: '8 hours, Saturday' }
+      ],
+      note: 'Prices in Canadian dollars, taxes not included. The final price is confirmed once the design is agreed. Deposit terms are being finalised.'
+    },
+    aftercare: {
+      kicker: '05 — Aftercare',
+      title: 'Aftercare',
+      intro: 'A tattoo heals in two to four weeks. How you treat it now decides how it looks in ten years.',
+      steps: [
+        { t: 'First hours', d: 'Keep the wrap on as long as I tell you at the end of the session. Always wash your hands before touching the tattoo.' },
+        { t: 'Wash', d: 'Two to three times a day, gently, with lukewarm water and unscented soap. Pat dry with clean paper towel.' },
+        { t: 'Moisturise', d: 'A very thin layer of unscented aftercare cream when the skin feels tight. Less is more.' },
+        { t: 'Let it peel', d: 'Flaking and itching are normal after a few days. Don’t scratch, pick or peel.' },
+        { t: 'Avoid for 3 weeks', d: 'Pools, baths, sea, sauna, tanning and direct sun. Wear loose, clean clothes over it.' },
+        { t: 'For life', d: 'Once healed, use sunscreen on the tattoo. Sun is what blurs lines over the years.' }
+      ],
+      warnTitle: 'Warning signs',
+      warn: 'Redness that spreads, heat, swelling that gets worse, pus or fever are not normal healing. Write to me and see a doctor or pharmacist right away.'
+    },
+    faq: {
+      kicker: '06 — FAQ',
+      title: 'Questions',
+      items: [
+        { q: 'How do I book?', a: 'Use the booking form on this page: describe the tattoo, pick a day and time, then leave your details. I answer every request myself.' },
+        { q: 'How much will my tattoo cost?', a: 'It depends on size, detail and placement. The minimum is $120, most work is $150 per hour, a Saturday half day (4 h) is $500 and a full day (8 h) is $900. Prices in CAD, before taxes. You get a quote before anything is booked for good.' },
+        { q: 'When do you tattoo?', a: 'Tuesday to Friday, with sessions starting between 11:00 and 18:00. Saturdays are for full day (8 h) or half day (4 h) sessions. Closed Sunday and Monday.' },
+        { q: 'Is it OK if it’s my first tattoo?', a: 'Of course. Tell me in the form and I’ll walk you through everything on the day: placement, stencil, breaks, aftercare.' },
+        { q: 'Can I bring my own design or references?', a: 'Yes, references help a lot. Add up to four photos in the form. I’ll draw something original from them; I don’t copy another artist’s custom piece.' },
+        { q: 'Do you do cover-ups?', a: 'Case by case. Send a clear photo of the old tattoo in the form and I’ll tell you honestly what is possible.' },
+        { q: 'How old do I need to be?', a: '18 or older, with a valid photo ID on the day. No exceptions, even with parental consent.' },
+        { q: 'What about medication or health conditions?', a: 'Don’t write medical details in the form. Tell me directly, or note them on the consent form at the studio.' }
+      ]
+    },
+    policies: {
+      kicker: '07 — Policies',
+      title: 'Policies',
+      intro: 'Short and clear, so the day goes well for both of us.',
+      items: [
+        { t: '18+ only', d: 'I only tattoo adults. Bring a valid photo ID to your session.' },
+        { t: 'Deposit & cancellation', d: 'Deposit, rescheduling and no-show terms are being finalised. They will be confirmed in writing when your session is booked.' },
+        { t: 'Touch-ups', d: 'Touch-up terms are being finalised. Follow the aftercare closely: it is the best way to avoid needing one.' },
+        { t: 'Pregnancy & breastfeeding', d: 'I don’t tattoo during pregnancy or while breastfeeding. You are welcome to book after.' },
+        { t: 'Health & medication', d: 'Some medication and conditions affect healing. Tell me directly or on the consent form. This website never asks for medical details.' },
+        { t: 'On the day', d: 'Eat before you come, drink water, no alcohol for 24 hours before. Wear clothes that give easy access to the placement.' }
+      ]
+    },
+    book: {
+      kicker: '08 — Booking',
+      title: 'Book a session',
+      intro: 'Three short steps. I read every request myself and answer within a few days.',
+      steps: ['The tattoo', 'When', 'You'],
+      stepWord: 'Step',
+      idea: 'Your idea',
+      ideaPh: 'What do you want, what does it mean to you, any words or symbols to include…',
+      style: 'Style',
+      styles: ['Cybersigilism', 'Neo-tribal', 'Lettering / script', 'Fine line blackwork', 'Not sure, your call'],
+      size: 'Size',
+      sizes: ['Small (under 8 cm)', 'Medium (8 to 15 cm)', 'Large (15 to 25 cm)', 'Extra large (25 cm +)'],
+      place: 'Placement',
+      places: ['Arm', 'Forearm', 'Hand / fingers', 'Neck', 'Chest', 'Back', 'Ribs', 'Leg', 'Other'],
+      color: 'Ink',
+      colors: ['Black and grey', 'Colour'],
+      budget: 'Budget',
+      budgets: ['Under $200', '$200 to $400', '$400 to $800', '$800 +'],
+      refs: 'Reference photos',
+      refsHint: 'Optional, up to 4. They are resized on your device before sending.',
+      addPhotos: 'Add photos',
+      remove: 'Remove',
+      photoBusy: 'Preparing photos…',
+      photoErr: 'One file could not be read. Try a JPEG or PNG.',
+      photoMax: '4 photos maximum.',
+      when: 'Pick a day',
+      dows: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      weekNote: 'Tuesday to Friday: sessions start at 11:00, 13:00, 15:00, 17:00 or 18:00.',
+      satNote: 'Saturday: full day (8 h) or half day (4 h).',
+      tzNote: 'All times are Montréal time.',
+      slotsWeek: ['11:00', '13:00', '15:00', '17:00', '18:00'],
+      slotsSat: ['11:00 · full day (8 h)', '11:00 · half day (4 h)', '15:00 · half day (4 h)'],
+      pickSlot: 'Pick a time',
+      noDay: 'Choose a day in the calendar to see the times.',
+      prevMonth: 'Previous month',
+      nextMonth: 'Next month',
+      closed: 'closed',
+      full: 'Taken',
+      fullDay: 'fully booked',
+      loading: 'Checking availability…',
+      busyErr: 'Live availability could not be loaded. Your time will still be checked.',
+      first: 'Is this your first tattoo?',
+      yesNo: ['Yes', 'No'],
+      pregnant: 'Are you pregnant or breastfeeding?',
+      pregnantBlock: 'I don’t tattoo during pregnancy or while breastfeeding, so I can’t take this booking now. Please come back after, I’ll be happy to book you then.',
+      acksTitle: 'Please confirm',
+      acks: [
+        'I am 18 or older and will bring a valid photo ID.',
+        'I understand the price is an estimate until the design is final.',
+        'I will share health and medication details directly with the artist, not through this form.',
+        'I understand deposit and cancellation terms will be confirmed with my booking.'
+      ],
+      name: 'Full name',
+      email: 'Email',
+      phone: 'Phone',
+      instagram: 'Instagram',
+      igPh: '@yourhandle',
+      optional: 'optional',
+      contact: 'Preferred contact',
+      contacts: ['Email', 'Phone call', 'Text message', 'Instagram'],
+      privacy: 'Your details are only sent to the artist. Reference photos are not stored by this website.',
+      back: 'Back',
+      next: 'Continue',
+      send: 'Send request',
+      summary: 'Your request',
+      sumDate: 'Date',
+      sumTime: 'Time',
+      sumPhotos: 'Photos',
+      sumName: 'Name',
+      err: {
+        idea: 'Tell me a bit more about your idea (10 characters minimum).',
+        pick: 'Choose one option.',
+        date: 'Pick a day and a time.',
+        name: 'Enter your name.',
+        email: 'Enter a valid email address.',
+        phone: 'Enter a phone number for this contact method.',
+        instagram: 'Enter your Instagram handle.',
+        acks: 'Please confirm all four points.',
+        fix: 'Some answers are missing. Check the highlighted fields.'
+      },
+      sending: 'Sending your request…',
+      bookedTitle: 'Booked',
+      bookedText: 'Your session is in my calendar. Check your inbox: you’ll get a confirmation email and a calendar invite. See you at the studio.',
+      deliveredTitle: 'Request sent',
+      deliveredText: 'Thank you. I read every request myself and will get back to you within a few days to confirm the time and the price.',
+      failedTitle: 'Not delivered',
+      failedText: 'Your request could not be sent from this page. Nothing is lost: send it by email or Instagram, or copy it and paste it anywhere.',
+      mailMe: 'Send by email',
+      dm: 'Instagram DM',
+      copy: 'Copy my request',
+      copied: 'Copied',
+      edit: 'Edit',
+      again: 'New request',
+      taken: 'That time was just taken. Please pick another one.',
+      mailSubject: 'Tattoo request',
+      photosNote: 'photo(s) chosen. I will send them by reply.'
+    },
+    studio: {
+      kicker: '09 — Studio',
+      title: 'Velours Tattoo',
+      note: 'A private studio on the Main. By appointment only, no walk-ins.',
+      addressTitle: 'Address',
+      address: ['Velours Tattoo', '3455 Saint-Laurent Blvd', 'Montréal, QC H2X 2T6'],
+      hoursTitle: 'Hours',
+      pending: 'Tuesday to Friday, 11:00 to 19:00. Saturday by full or half day. Closed Sunday and Monday.',
+      directions: 'Open in Google Maps',
+      mapTitle: 'Map of Velours Tattoo, 3455 Saint-Laurent Blvd',
+      alt: 'Inside Velours Tattoo'
+    },
+    footer: {
+      tagline: 'Tattoo artist at Velours Tattoo, Montréal. Cybersigilism, neo-tribal, lettering.',
+      contact: 'Contact',
+      hoursTitle: 'Hours',
+      hours: 'Tuesday to Saturday, by appointment',
+      studioTitle: 'Studio',
+      rights: '© 2026 Skinreaper. All photographs belong to the artist.',
+      age: '18+ only',
+      top: 'Back to top'
+    },
+    bar: { label: 'Quick actions', book: 'Book', instagram: 'Instagram', map: 'Map' }
+  },
+
+  fr: {
+    meta: {
+      title: 'Skinreaper — Tatoueur, Montréal',
+      desc: 'Skinreaper, tatoueur chez Velours Tattoo, 3455 boul. Saint-Laurent, Montréal. Cybersigilism, néo-tribal et lettrage sur mesure. Réservez en ligne.'
+    },
+    nav: { work: 'Travaux', about: 'À propos', styles: 'Styles', pricing: 'Tarifs', aftercare: 'Soins', faq: 'FAQ', policies: 'Politiques', book: 'Réserver', studio: 'Studio', menu: 'Menu', close: 'Fermer' },
+    hero: {
+      kicker: 'Tatoueur · Velours Tattoo · Montréal',
+      lines: ['Lignes nettes', 'pour histoires', 'sombres'],
+      sub: 'Cybersigilism, néo-tribal et lettrage sur mesure, dessinés pour votre corps et personne d’autre.',
+      cta: 'Réserver une séance',
+      cta2: 'Voir les travaux',
+      meta: ['Du mardi au samedi', 'Sur rendez-vous', '18 ans et plus'],
+      alt: 'Tatouage par Skinreaper'
+    },
+    slot: { drop: 'Déposez une photo ici' },
+    work: {
+      kicker: '01 — Travaux',
+      title: 'Travaux choisis',
+      intro: 'Pièces fraîches et guéries, faites au studio. Touchez une photo pour l’agrandir.',
+      filter: 'Filtrer les travaux',
+      all: 'Tout',
+      open: 'Ouvrir la photo',
+      alt: 'Tatouage par Skinreaper',
+      prev: 'Précédente',
+      next: 'Suivante',
+      close: 'Fermer',
+      of: 'sur'
+    },
+    about: {
+      kicker: '02 — À propos',
+      title: 'L’artiste',
+      lead: 'Je suis Skinreaper. Je tatoue chez Velours Tattoo, sur Saint-Laurent, et je dessine chaque pièce pour la personne qui la portera.',
+      body: [
+        'Mon travail se situe entre le cybersigilism, le néo-tribal et le lettrage : des lignes noires nettes et fluides qui suivent les muscles et les os au lieu de simplement se poser dessus.',
+        'Je pars de votre idée, de vos références et de l’emplacement, puis je construis le dessin selon la façon dont vous bougez. Pas de copies, pas de flash recyclé d’un autre artiste.'
+      ],
+      facts: [
+        { k: 'Studio', v: 'Velours Tattoo, Montréal' },
+        { k: 'Spécialités', v: 'Cybersigilism, lettrage' },
+        { k: 'Langues', v: 'Français, anglais' }
+      ],
+      alt: 'Skinreaper au travail'
+    },
+    styles: {
+      kicker: '03 — Styles',
+      title: 'Ce que je tatoue',
+      intro: 'Encre noire, travail de ligne, pensé pour le corps. Pas sûr que votre idée colle ? Demandez quand même.',
+      items: [
+        { n: 'Cybersigilism', d: 'Lignes fines, pointues et symétriques, avec pics et courbes qui épousent le corps. Noir net, sans ombrage superflu.' },
+        { n: 'Néo-tribal', d: 'Formes plus pleines et fluides inspirées du tribal, redessinées avec une énergie moderne et agressive.' },
+        { n: 'Lettrage & script', d: 'Mots, noms et dates sur mesure. Gothique, chrome, manuscrit ou lettres entièrement inventées.' },
+        { n: 'Fine line blackwork', d: 'Petites et moyennes pièces au détail précis : symboles, ornements, petits sigils.' }
+      ],
+      noTitle: 'Ce que je ne fais pas',
+      no: ['Portraits réalistes', 'Copies du travail sur mesure d’un autre artiste', 'Gros recouvrements pleins', 'Symboles haineux']
+    },
+    pricing: {
+      kicker: '04 — Tarifs',
+      title: 'Tarifs',
+      intro: 'Chaque pièce est chiffrée après lecture de votre demande. Ces tarifs sont un point de départ.',
+      rates: [
+        { k: 'Minimum', v: '120 $', d: 'Petites pièces simples' },
+        { k: 'À l’heure', v: '150 $/h', d: 'La plupart des petites et moyennes pièces' },
+        { k: 'Demi-journée', v: '500 $', d: '4 heures, samedi' },
+        { k: 'Journée complète', v: '900 $', d: '8 heures, samedi' }
+      ],
+      note: 'Prix en dollars canadiens, taxes en sus. Le prix final est confirmé une fois le dessin validé. Les modalités de dépôt sont en cours de finalisation.'
+    },
+    aftercare: {
+      kicker: '05 — Soins',
+      title: 'Soins',
+      intro: 'Un tatouage guérit en deux à quatre semaines. Ce que vous faites maintenant décide de son allure dans dix ans.',
+      steps: [
+        { t: 'Premières heures', d: 'Gardez le pansement aussi longtemps que je vous l’indique à la fin de la séance. Lavez-vous toujours les mains avant de toucher le tatouage.' },
+        { t: 'Laver', d: 'Deux à trois fois par jour, doucement, à l’eau tiède et au savon sans parfum. Séchez en tapotant avec un essuie-tout propre.' },
+        { t: 'Hydrater', d: 'Une couche très fine de crème de soin sans parfum quand la peau tire. Moins, c’est mieux.' },
+        { t: 'Laisser peler', d: 'Les petites peaux et les démangeaisons sont normales après quelques jours. Ne grattez pas, n’arrachez rien.' },
+        { t: 'À éviter 3 semaines', d: 'Piscine, bain, mer, sauna, bronzage et soleil direct. Portez des vêtements amples et propres.' },
+        { t: 'Pour la vie', d: 'Une fois guéri, mettez de la crème solaire sur le tatouage. C’est le soleil qui brouille les lignes avec les années.' }
+      ],
+      warnTitle: 'Signes d’alerte',
+      warn: 'Une rougeur qui s’étend, de la chaleur, un gonflement qui empire, du pus ou de la fièvre ne font pas partie d’une guérison normale. Écrivez-moi et consultez un médecin ou un pharmacien sans attendre.'
+    },
+    faq: {
+      kicker: '06 — FAQ',
+      title: 'Questions',
+      items: [
+        { q: 'Comment réserver ?', a: 'Avec le formulaire de réservation de cette page : décrivez le tatouage, choisissez un jour et une heure, puis laissez vos coordonnées. Je réponds moi-même à chaque demande.' },
+        { q: 'Combien coûtera mon tatouage ?', a: 'Cela dépend de la taille, du détail et de l’emplacement. Le minimum est de 120 $, la plupart des pièces sont à 150 $ de l’heure, une demi-journée le samedi (4 h) est à 500 $ et une journée complète (8 h) à 900 $. Prix en dollars canadiens, taxes en sus. Vous recevez un prix avant que la réservation soit définitive.' },
+        { q: 'Quand tatouez-vous ?', a: 'Du mardi au vendredi, avec des séances qui commencent entre 11 h et 18 h. Le samedi est réservé aux journées complètes (8 h) ou demi-journées (4 h). Fermé dimanche et lundi.' },
+        { q: 'C’est mon premier tatouage, est-ce un problème ?', a: 'Pas du tout. Indiquez-le dans le formulaire et je vous guiderai le jour même : emplacement, stencil, pauses, soins.' },
+        { q: 'Puis-je apporter mon dessin ou des références ?', a: 'Oui, les références aident beaucoup. Ajoutez jusqu’à quatre photos dans le formulaire. Je dessinerai une pièce originale à partir d’elles ; je ne copie pas le travail sur mesure d’un autre artiste.' },
+        { q: 'Faites-vous des recouvrements ?', a: 'Au cas par cas. Envoyez une photo nette de l’ancien tatouage dans le formulaire et je vous dirai honnêtement ce qui est possible.' },
+        { q: 'Quel âge faut-il avoir ?', a: '18 ans ou plus, avec une pièce d’identité avec photo valide le jour même. Aucune exception, même avec l’accord des parents.' },
+        { q: 'Et les médicaments ou problèmes de santé ?', a: 'N’écrivez aucun détail médical dans le formulaire. Dites-le-moi directement, ou indiquez-le sur le formulaire de consentement au studio.' }
+      ]
+    },
+    policies: {
+      kicker: '07 — Politiques',
+      title: 'Politiques',
+      intro: 'Courtes et claires, pour que la séance se passe bien pour nous deux.',
+      items: [
+        { t: '18 ans et plus', d: 'Je ne tatoue que des adultes. Apportez une pièce d’identité avec photo valide à votre séance.' },
+        { t: 'Dépôt & annulation', d: 'Les modalités de dépôt, de report et d’absence sont en cours de finalisation. Elles vous seront confirmées par écrit lors de la réservation.' },
+        { t: 'Retouches', d: 'Les modalités de retouche sont en cours de finalisation. Suivre les soins à la lettre reste la meilleure façon de ne pas en avoir besoin.' },
+        { t: 'Grossesse & allaitement', d: 'Je ne tatoue pas pendant la grossesse ni pendant l’allaitement. Vous serez bienvenue après.' },
+        { t: 'Santé & médicaments', d: 'Certains médicaments et problèmes de santé influencent la guérison. Dites-le-moi directement ou sur le formulaire de consentement. Ce site ne demande jamais de détails médicaux.' },
+        { t: 'Le jour même', d: 'Mangez avant de venir, buvez de l’eau, pas d’alcool dans les 24 heures avant. Portez des vêtements qui donnent facilement accès à l’emplacement.' }
+      ]
+    },
+    book: {
+      kicker: '08 — Réservation',
+      title: 'Réserver une séance',
+      intro: 'Trois étapes courtes. Je lis chaque demande moi-même et je réponds en quelques jours.',
+      steps: ['Le tatouage', 'Quand', 'Vous'],
+      stepWord: 'Étape',
+      idea: 'Votre idée',
+      ideaPh: 'Ce que vous voulez, ce que ça représente pour vous, des mots ou symboles à inclure…',
+      style: 'Style',
+      styles: ['Cybersigilism', 'Néo-tribal', 'Lettrage / script', 'Fine line blackwork', 'Je ne sais pas, à vous de voir'],
+      size: 'Taille',
+      sizes: ['Petit (moins de 8 cm)', 'Moyen (8 à 15 cm)', 'Grand (15 à 25 cm)', 'Très grand (25 cm +)'],
+      place: 'Emplacement',
+      places: ['Bras', 'Avant-bras', 'Main / doigts', 'Cou', 'Poitrine', 'Dos', 'Côtes', 'Jambe', 'Autre'],
+      color: 'Encre',
+      colors: ['Noir et gris', 'Couleur'],
+      budget: 'Budget',
+      budgets: ['Moins de 200 $', '200 $ à 400 $', '400 $ à 800 $', '800 $ +'],
+      refs: 'Photos de référence',
+      refsHint: 'Facultatif, jusqu’à 4. Elles sont redimensionnées sur votre appareil avant l’envoi.',
+      addPhotos: 'Ajouter des photos',
+      remove: 'Retirer',
+      photoBusy: 'Préparation des photos…',
+      photoErr: 'Un fichier n’a pas pu être lu. Essayez un JPEG ou un PNG.',
+      photoMax: '4 photos maximum.',
+      when: 'Choisissez un jour',
+      dows: ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'],
+      weekNote: 'Du mardi au vendredi : séances à 11 h, 13 h, 15 h, 17 h ou 18 h.',
+      satNote: 'Samedi : journée complète (8 h) ou demi-journée (4 h).',
+      tzNote: 'Toutes les heures sont à l’heure de Montréal.',
+      slotsWeek: ['11 h', '13 h', '15 h', '17 h', '18 h'],
+      slotsSat: ['11 h · journée complète (8 h)', '11 h · demi-journée (4 h)', '15 h · demi-journée (4 h)'],
+      pickSlot: 'Choisissez une heure',
+      noDay: 'Choisissez un jour dans le calendrier pour voir les heures.',
+      prevMonth: 'Mois précédent',
+      nextMonth: 'Mois suivant',
+      closed: 'fermé',
+      full: 'Pris',
+      fullDay: 'complet',
+      loading: 'Vérification des disponibilités…',
+      busyErr: 'Les disponibilités n’ont pas pu être chargées. Votre heure sera quand même vérifiée.',
+      first: 'Est-ce votre premier tatouage ?',
+      yesNo: ['Oui', 'Non'],
+      pregnant: 'Êtes-vous enceinte ou allaitez-vous ?',
+      pregnantBlock: 'Je ne tatoue pas pendant la grossesse ni pendant l’allaitement, je ne peux donc pas accepter cette réservation pour l’instant. Revenez après, ce sera avec plaisir.',
+      acksTitle: 'Veuillez confirmer',
+      acks: [
+        'J’ai 18 ans ou plus et j’apporterai une pièce d’identité avec photo valide.',
+        'Je comprends que le prix est une estimation tant que le dessin n’est pas final.',
+        'Je donnerai les informations de santé et de médicaments directement à l’artiste, pas dans ce formulaire.',
+        'Je comprends que les modalités de dépôt et d’annulation seront confirmées avec ma réservation.'
+      ],
+      name: 'Nom complet',
+      email: 'Courriel',
+      phone: 'Téléphone',
+      instagram: 'Instagram',
+      igPh: '@votrecompte',
+      optional: 'facultatif',
+      contact: 'Moyen de contact préféré',
+      contacts: ['Courriel', 'Appel', 'Texto', 'Instagram'],
+      privacy: 'Vos informations sont envoyées uniquement à l’artiste. Les photos de référence ne sont pas conservées par ce site.',
+      back: 'Retour',
+      next: 'Continuer',
+      send: 'Envoyer la demande',
+      summary: 'Votre demande',
+      sumDate: 'Date',
+      sumTime: 'Heure',
+      sumPhotos: 'Photos',
+      sumName: 'Nom',
+      err: {
+        idea: 'Décrivez un peu plus votre idée (10 caractères minimum).',
+        pick: 'Choisissez une option.',
+        date: 'Choisissez un jour et une heure.',
+        name: 'Entrez votre nom.',
+        email: 'Entrez une adresse courriel valide.',
+        phone: 'Entrez un numéro de téléphone pour ce moyen de contact.',
+        instagram: 'Entrez votre compte Instagram.',
+        acks: 'Veuillez confirmer les quatre points.',
+        fix: 'Il manque des réponses. Vérifiez les champs en rouge.'
+      },
+      sending: 'Envoi de votre demande…',
+      bookedTitle: 'Réservé',
+      bookedText: 'Votre séance est dans mon agenda. Vérifiez votre boîte de réception : vous recevrez un courriel de confirmation et une invitation de calendrier. À bientôt au studio.',
+      deliveredTitle: 'Demande envoyée',
+      deliveredText: 'Merci. Je lis chaque demande moi-même et je vous réponds en quelques jours pour confirmer l’heure et le prix.',
+      failedTitle: 'Non envoyée',
+      failedText: 'Votre demande n’a pas pu être envoyée depuis cette page. Rien n’est perdu : envoyez-la par courriel ou sur Instagram, ou copiez-la pour la coller où vous voulez.',
+      mailMe: 'Envoyer par courriel',
+      dm: 'Message Instagram',
+      copy: 'Copier ma demande',
+      copied: 'Copiée',
+      edit: 'Modifier',
+      again: 'Nouvelle demande',
+      taken: 'Cette heure vient d’être prise. Choisissez-en une autre.',
+      mailSubject: 'Demande de tatouage',
+      photosNote: 'photo(s) choisie(s). Je les enverrai en réponse.'
+    },
+    studio: {
+      kicker: '09 — Studio',
+      title: 'Velours Tattoo',
+      note: 'Un studio privé sur la Main. Sur rendez-vous seulement, sans sans-rendez-vous.',
+      addressTitle: 'Adresse',
+      address: ['Velours Tattoo', '3455, boul. Saint-Laurent', 'Montréal (QC) H2X 2T6'],
+      hoursTitle: 'Heures',
+      pending: 'Du mardi au vendredi, de 11 h à 19 h. Samedi en journée complète ou demi-journée. Fermé dimanche et lundi.',
+      directions: 'Ouvrir dans Google Maps',
+      mapTitle: 'Carte de Velours Tattoo, 3455 boul. Saint-Laurent',
+      alt: 'L’intérieur de Velours Tattoo'
+    },
+    footer: {
+      tagline: 'Tatoueur chez Velours Tattoo, Montréal. Cybersigilism, néo-tribal, lettrage.',
+      contact: 'Contact',
+      hoursTitle: 'Heures',
+      hours: 'Du mardi au samedi, sur rendez-vous',
+      studioTitle: 'Studio',
+      rights: '© 2026 Skinreaper. Toutes les photos appartiennent à l’artiste.',
+      age: '18 ans et plus',
+      top: 'Haut de page'
+    },
+    bar: { label: 'Actions rapides', book: 'Réserver', instagram: 'Instagram', map: 'Carte' }
+  }
+};
+
+/* Wording used only when bookingUrl is set (automatic booking) */
+const AUTO = {
+  en: {
+    intro: 'Three short steps. Pick a free time and it goes straight into my calendar: you get a confirmation email and a calendar invite right away.',
+    send: 'Book this time',
+    sending: 'Booking your session…'
+  },
+  fr: {
+    intro: 'Trois étapes courtes. Choisissez une heure libre et elle est ajoutée directement à mon agenda : vous recevez tout de suite un courriel de confirmation et une invitation de calendrier.',
+    send: 'Réserver cette heure',
+    sending: 'Réservation de votre séance…'
+  }
+};
+
+/* ------------------------------------------------------------------ *
+ * Time helpers — everything is computed in the studio time zone
+ * ------------------------------------------------------------------ */
+const tzFmt = new Intl.DateTimeFormat('en-CA', {
+  timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit',
+  hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+});
+
+function tzParts(date) {
+  const p = {};
+  tzFmt.formatToParts(date).forEach(x => { p[x.type] = x.value; });
+  return { y: +p.year, m: +p.month, d: +p.day, h: +p.hour % 24, min: +p.minute, s: +p.second };
+}
+
+const utcCache = new Map();
+function zonedToUtc(y, m, d, h, min) {
+  const key = `${y}-${m}-${d}-${h}-${min}`;
+  if (utcCache.has(key)) return utcCache.get(key);
+  const guess = Date.UTC(y, m - 1, d, h, min);
+  const offsetAt = t => {
+    const p = tzParts(new Date(t));
+    return Date.UTC(p.y, p.m - 1, p.d, p.h, p.min, p.s) - t;
+  };
+  const first = guess - offsetAt(guess);
+  const result = guess - offsetAt(first);
+  utcCache.set(key, result);
+  return result;
+}
+
+const pad2 = n => String(n).padStart(2, '0');
+const ymd = (y, m, d) => `${y}-${pad2(m)}-${pad2(d)}`;
+
+function parseSlot(label) {
+  const m = /^\s*(\d{1,2})\s*(?::|h)\s*(\d{2})?/i.exec(label) || [null, 11, 0];
+  const l = label.toLowerCase();
+  const hours = /full day|journée complète|journee complete/.test(l) ? 8 : /half day|demi/.test(l) ? 4 : 2;
+  return { h: +m[1], min: +(m[2] || 0), hours };
+}
+
+function gcalStamp(ms) {
+  return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+}
+
+function resizeImage(file, max) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      const r = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+      const c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(img.naturalWidth * r));
+      c.height = Math.max(1, Math.round(img.naturalHeight * r));
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      const data = c.toDataURL('image/jpeg', 0.82);
+      c.toBlob(blob => {
+        resolve({ name: file.name.replace(/\.[^.]+$/, '') + '.jpg', data, thumb: URL.createObjectURL(blob || file) });
+      }, 'image/jpeg', 0.7);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('unreadable')); };
+    img.src = url;
+  });
+}
+
+/* ------------------------------------------------------------------ *
+ * Styles — inline on purpose, switched at 1080px
+ * ------------------------------------------------------------------ */
+const styleCache = {};
+function makeStyles(d) {
+  if (styleCache[d]) return styleCache[d];
+  const H = "Anton, Impact, 'Arial Narrow Bold', sans-serif";
+  const B = "Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif";
+  const btn = `display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;font-family:${B};font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;border-radius:0;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,opacity .2s;`;
+  const chip = `display:inline-flex;align-items:center;min-height:44px;padding:0 18px;font-family:${B};font-size:14px;font-weight:500;cursor:pointer;border-radius:999px;text-align:left;transition:background .15s,color .15s,border-color .15s;`;
+  const input = `display:block;width:100%;min-height:48px;padding:12px 14px;background:#0A0A0A;color:#F2F2F0;border:1px solid #2A2A28;border-radius:0;font-family:${B};font-size:16px;font-weight:400;outline:none;`;
+  const bar = `display:flex;align-items:center;justify-content:center;min-height:56px;font-family:${B};font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;`;
+  return (styleCache[d] = {
+    root: `background:#0A0A0A;color:#F2F2F0;font-family:${B};font-weight:300;min-height:100vh;overflow-x:clip;padding-bottom:${d ? 0 : 56}px;`,
+    wrap: `max-width:1440px;margin:0 auto;padding:0 ${d ? 56 : 20}px;`,
+    navInner: `max-width:1440px;margin:0 auto;padding:0 ${d ? 56 : 16}px 0 ${d ? 56 : 20}px;height:${d ? 72 : 60}px;display:flex;align-items:center;justify-content:space-between;gap:24px;`,
+    logo: `font-family:${H};font-size:${d ? 26 : 22}px;letter-spacing:.04em;text-transform:uppercase;color:#F2F2F0;text-decoration:none;line-height:1;`,
+    navLink: `color:#A6A6A2;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;`,
+    navCta: btn + 'min-height:40px;padding:0 18px;background:#F2F2F0;color:#0A0A0A;border:1px solid #F2F2F0;',
+    langWrap: 'display:flex;border:1px solid #2A2A28;',
+    langOn: `min-width:44px;min-height:${d ? 38 : 44}px;background:#F2F2F0;color:#0A0A0A;border:0;font-family:${B};font-weight:600;font-size:12px;letter-spacing:.12em;cursor:pointer;`,
+    langOff: `min-width:44px;min-height:${d ? 38 : 44}px;background:transparent;color:#8C8C88;border:0;font-family:${B};font-weight:600;font-size:12px;letter-spacing:.12em;cursor:pointer;`,
+    menuBtn: `min-height:44px;padding:0 16px;background:transparent;color:#F2F2F0;border:1px solid #3A3A38;font-family:${B};font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;`,
+    menu: 'position:fixed;inset:0;z-index:45;background:#0A0A0A;padding:88px 20px 32px;display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto;',
+    menuLink: `display:block;padding:4px 0;font-family:${H};font-size:clamp(40px,12vw,58px);line-height:1.1;text-transform:uppercase;color:#F2F2F0;text-decoration:none;`,
+
+    section: `position:relative;padding:${d ? '150px 0' : '96px 0'};border-top:1px solid #1A1A1A;scroll-margin-top:${d ? 40 : 30}px;`,
+    head: `display:flex;${d ? 'align-items:flex-end;justify-content:space-between;' : 'flex-direction:column;'}gap:${d ? 48 : 24}px;margin-bottom:${d ? 72 : 44}px;`,
+    kicker: `margin:0;font-family:${B};font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8C8C88;`,
+    h1: `margin:22px 0 0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 'clamp(80px,7.2vw,164px)' : 'clamp(48px,14vw,96px)'};line-height:.9;letter-spacing:-.005em;white-space:nowrap;`,
+    h2: `margin:16px 0 0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 'clamp(80px,8vw,136px)' : 'clamp(52px,15vw,76px)'};line-height:.9;`,
+    h3: `margin:0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 34 : 28}px;line-height:1;letter-spacing:.01em;`,
+    lead: `margin:0;font-size:${d ? 22 : 18}px;line-height:1.5;color:#F2F2F0;font-weight:300;max-width:44ch;`,
+    body: `margin:0;font-size:${d ? 17 : 16}px;line-height:1.7;color:#A6A6A2;`,
+    small: 'margin:0;font-size:13px;line-height:1.6;color:#8C8C88;',
+    label: `display:block;margin:0 0 12px;padding:0;font-family:${B};font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#A6A6A2;`,
+    btn: btn + 'background:#F2F2F0;color:#0A0A0A;border:1px solid #F2F2F0;',
+    btnGhost: btn + 'background:transparent;color:#F2F2F0;border:1px solid #3A3A38;',
+    btnOff: btn + 'background:#1A1A1A;color:#6E6E6B;border:1px solid #1A1A1A;cursor:not-allowed;',
+    chipOn: chip + 'background:#F2F2F0;color:#0A0A0A;border:1px solid #F2F2F0;',
+    chipOff: chip + 'background:transparent;color:#A6A6A2;border:1px solid #2A2A28;',
+    tag: 'padding:8px 14px;border:1px solid #2A2A28;font-size:13px;color:#8C8C88;text-decoration:line-through;text-decoration-color:#3A3A38;',
+    cover: 'display:block;width:100%;height:100%;object-fit:cover;',
+    slot: `display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;height:100%;min-height:200px;padding:16px;background:repeating-linear-gradient(135deg,#0D0D0D 0 14px,#111110 14px 28px);border:1px dashed #2A2A28;color:#6E6E6B;font-family:${B};font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;`,
+
+    hero: `position:relative;padding:${d ? '140px 0 80px' : '100px 0 64px'};`,
+    heroGrid: `display:grid;grid-template-columns:${d ? '1.15fr .85fr' : '1fr'};gap:${d ? 56 : 40}px;align-items:end;${d ? 'min-height:calc(100vh - 220px);' : ''}`,
+    heroMeta: 'list-style:none;padding:0;margin:44px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#6E6E6B;',
+    heroMedia: `position:relative;overflow:hidden;background:#0D0D0D;${d ? 'height:min(76vh,800px);' : 'aspect-ratio:4/5;'}`,
+    heroPar: 'position:absolute;top:-8%;bottom:-8%;left:0;right:0;transform:translate3d(0,var(--sr-par,0px),0);will-change:transform;',
+
+    gallery: `columns:${d ? 3 : 2};column-gap:${d ? 20 : 10}px;`,
+    figure: `margin:0 0 ${d ? 28 : 16}px;break-inside:avoid;position:relative;`,
+    figBtn: 'display:block;width:100%;padding:0;border:0;background:#0D0D0D;cursor:zoom-in;overflow:hidden;',
+    figcap: `display:flex;justify-content:space-between;gap:8px;padding:10px 2px 0;font-size:${d ? 12 : 10}px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#6E6E6B;`,
+
+    aboutGrid: `display:grid;grid-template-columns:${d ? '5fr 6fr' : '1fr'};gap:${d ? 96 : 44}px;align-items:start;`,
+    aboutMedia: `position:relative;overflow:hidden;aspect-ratio:4/5;background:#0D0D0D;${d ? 'position:sticky;top:110px;' : ''}`,
+    facts: `display:grid;grid-template-columns:${d ? 'repeat(3,1fr)' : '1fr'};margin:48px 0 0;border-top:1px solid #1F1F1E;`,
+    fact: `padding:20px ${d ? '20px' : '0'} 20px 0;border-bottom:1px solid #1F1F1E;`,
+
+    row: `display:grid;grid-template-columns:${d ? '90px 1fr 1.2fr' : '44px 1fr'};gap:${d ? '0 32px' : '10px 14px'};padding:${d ? '40px 0' : '28px 0'};border-bottom:1px solid #1F1F1E;align-items:baseline;`,
+    rowNum: `font-family:${B};font-size:12px;font-weight:600;letter-spacing:.16em;color:#6E6E6B;`,
+
+    rates: `display:grid;grid-template-columns:${d ? 'repeat(4,1fr)' : '1fr'};border-top:1px solid #1F1F1E;${d ? 'border-left:1px solid #1F1F1E;' : ''}`,
+    rate: `display:flex;${d ? 'flex-direction:column-reverse;justify-content:flex-end;gap:28px;padding:40px 28px;border-right:1px solid #1F1F1E;' : 'justify-content:space-between;align-items:center;gap:16px;padding:24px 0;'}border-bottom:1px solid #1F1F1E;`,
+    rateV: `margin:0;font-family:${H};font-size:${d ? 60 : 40}px;line-height:1;white-space:nowrap;`,
+
+    care: `list-style:none;margin:0;padding:0;display:grid;grid-template-columns:${d ? 'repeat(3,1fr)' : '1fr'};gap:${d ? '56px 40px' : '36px'};`,
+    warn: `display:flex;gap:18px;align-items:flex-start;margin-top:${d ? 64 : 44}px;padding:${d ? '28px 32px' : '22px 20px'};border:1px solid #E0736B;`,
+
+    faqBtn: `width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:${d ? '28px 0' : '22px 0'};min-height:48px;background:transparent;border:0;color:#F2F2F0;text-align:left;cursor:pointer;font-family:${B};font-size:${d ? 22 : 18}px;font-weight:400;line-height:1.35;`,
+    policies: `display:grid;grid-template-columns:${d ? 'repeat(2,1fr)' : '1fr'};gap:0 ${d ? 64 : 0}px;`,
+
+    bookGrid: `display:grid;grid-template-columns:${d ? '5fr 7fr' : '1fr'};gap:${d ? 80 : 40}px;align-items:start;`,
+    bookAside: d ? 'position:sticky;top:110px;' : '',
+    formWrap: `position:relative;background:#101010;border:1px solid #1F1F1E;padding:${d ? '40px 44px 0' : '24px 18px 0'};scroll-margin-top:${d ? 90 : 70}px;`,
+    stepper: 'list-style:none;margin:0 0 36px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;',
+    field: 'margin:0 0 32px;',
+    fieldset: 'margin:0 0 32px;padding:0;border:0;min-width:0;',
+    req: 'color:#6E6E6B;font-weight:500;letter-spacing:.08em;text-transform:none;',
+    input,
+    inputErr: input + 'border-color:#E0736B;',
+    err: 'margin:10px 0 0;font-size:14px;line-height:1.5;color:#E0736B;',
+    check: 'display:flex;gap:14px;align-items:flex-start;padding:10px 0;min-height:44px;cursor:pointer;font-size:15px;line-height:1.5;color:#D8D8D4;',
+    checkbox: 'flex:none;width:22px;height:22px;margin:1px 0 0;accent-color:#F2F2F0;cursor:pointer;',
+    grid2: `display:grid;grid-template-columns:${d ? '1fr 1fr' : '1fr'};gap:0 20px;`,
+    photoX: 'position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;background:#0A0A0A;color:#F2F2F0;border:1px solid #3A3A38;cursor:pointer;font-size:12px;line-height:1;',
+    formBar: `position:sticky;bottom:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 ${d ? -44 : -18}px;padding:14px ${d ? 44 : 18}px;padding-bottom:max(14px, env(safe-area-inset-bottom));background:rgba(16,16,16,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid #1F1F1E;`,
+    statusBox: `padding:${d ? '8px 0 44px' : '8px 0 28px'};`,
+    sumRow: 'display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #1F1F1E;font-size:14px;line-height:1.5;',
+    calGrid: 'display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;',
+    dow: 'text-align:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6E6E6B;padding:6px 0;',
+    calNav: 'width:44px;height:44px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid #2A2A28;color:#F2F2F0;cursor:pointer;font-size:18px;',
+    calNavOff: 'width:44px;height:44px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid #1A1A1A;color:#3A3A38;cursor:default;font-size:18px;',
+
+    studioGrid: `display:grid;grid-template-columns:${d ? '1fr 1fr' : '1fr'};gap:${d ? 56 : 36}px;align-items:start;`,
+    studioMedia: `position:relative;overflow:hidden;background:#0D0D0D;aspect-ratio:${d ? '4/5' : '4/3'};`,
+    map: `display:block;width:100%;height:${d ? 340 : 260}px;border:1px solid #1F1F1E;filter:grayscale(1) invert(.92) contrast(.85);`,
+
+    footer: `border-top:1px solid #1A1A1A;padding:${d ? '80px 0 40px' : '56px 0 32px'};`,
+    footLink: 'display:block;color:#A6A6A2;text-decoration:none;font-size:14px;line-height:1.9;overflow-wrap:anywhere;',
+    giant: `margin:${d ? '72px 0 24px' : '48px 0 16px'};font-family:${H};font-size:${d ? 'clamp(120px,17vw,280px)' : '21vw'};line-height:.85;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px #2A2A28;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;`,
+
+    lb: 'position:fixed;inset:0;z-index:60;background:rgba(5,5,5,.97);display:flex;flex-direction:column;',
+    lbTop: `display:flex;justify-content:space-between;align-items:center;gap:12px;padding:${d ? '18px 32px' : '10px 14px'};`,
+    lbStage: `flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:${d ? '0 32px' : '0 10px'};`,
+    lbBar: `display:flex;justify-content:space-between;gap:12px;padding:${d ? '18px 32px' : '10px 14px'};padding-bottom:max(${d ? 18 : 10}px, env(safe-area-inset-bottom));`,
+
+    bar: 'position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:#1F1F1E;border-top:1px solid #1F1F1E;padding-bottom:env(safe-area-inset-bottom);',
+    barMain: bar + 'background:#F2F2F0;color:#0A0A0A;',
+    barBtn: bar + 'background:#0A0A0A;color:#F2F2F0;'
+  });
+}
+
+function emptyForm() {
+  return {
+    idea: '', style: -1, size: -1, place: -1, color: -1, budget: -1,
+    first: -1, pregnant: -1, acks: [false, false, false, false],
+    name: '', email: '', phone: '', instagram: '', contact: -1, company: ''
+  };
+}
+
+/* ------------------------------------------------------------------ *
+ * Component — state and behaviour
+ * ------------------------------------------------------------------ */
+class Component extends DC.Component {
+  constructor(props) {
+    super(props);
+
+    this.works = [
+      { src: 'img/w1.png', cat: 'cyber', place: { en: 'Full arm', fr: 'Bras complet' } },
+      { src: 'img/w2.png', cat: 'lettering', place: { en: 'Calf', fr: 'Mollet' } },
+      { src: 'img/w3.png', cat: 'cyber', place: { en: 'Chest', fr: 'Poitrine' } },
+      { src: 'img/w4.png', cat: 'lettering', place: { en: 'Forearm', fr: 'Avant-bras' } },
+      { src: 'img/w5.png', cat: 'cyber', place: { en: 'Leg', fr: 'Jambe' } },
+      { src: 'img/w6.png', cat: 'lettering', place: { en: 'Back', fr: 'Dos' } },
+      { src: 'img/w7.png', cat: 'lettering', place: { en: 'Shoulder blade', fr: 'Omoplate' } },
+      { src: 'img/w8.png', cat: 'cyber', place: { en: 'Chest & torso', fr: 'Poitrine et torse' } },
+      { src: 'img/w9.png', cat: 'lettering', place: { en: 'Forearm', fr: 'Avant-bras' } },
+      { src: 'img/w10.png', cat: 'lettering', place: { en: 'Inner arm', fr: 'Intérieur du bras' } }
+    ];
+    this.catLabels = {
+      cyber: { en: 'Cyber / sigil', fr: 'Cyber / sigil' },
+      lettering: { en: 'Lettering', fr: 'Lettrage' }
+    };
+    this.heroSrc = 'img/w1.png';
+    this.aboutSrc = 'img/w8.png';
+    this.studioSrc = 'img/studio.png';
+
+    let saved = null;
+    try { saved = localStorage.getItem('sr_lang'); } catch (e) { /* storage blocked */ }
+    const lang = saved === 'en' || saved === 'fr' ? saved : (props.lang === 'fr' ? 'fr' : 'en');
+    const now = tzParts(new Date());
+
+    this.mq = window.matchMedia('(min-width: 1080px)');
+    this.busyByMonth = {};
+    this.state = {
+      lang,
+      desktop: this.mq.matches,
+      scrolled: false,
+      menuOpen: false,
+      filter: 'all',
+      lightbox: -1,
+      faqOpen: 0,
+      bookVisible: false,
+      step: 1,
+      f: emptyForm(),
+      photos: [],
+      photoBusy: false,
+      photoMsg: '',
+      month: { y: now.y, m: now.m },
+      date: '',
+      slot: -1,
+      busy: [],
+      busyState: 'idle',
+      err: {},
+      status: '',
+      takenMsg: false,
+      copied: false
+    };
+    ImageSlot.onChange(() => this.update());
+  }
+
+  motionOff() {
+    return !!this.props.reduceMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  mounted() {
+    this.applyLang();
+    this.mq.addEventListener('change', e => this.setState({ desktop: e.matches, menuOpen: false }));
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const y = window.scrollY;
+        const scrolled = y > 30;
+        if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+        const par = this.motionOff() ? 0 : Math.min(y, 1400) * 0.12;
+        document.documentElement.style.setProperty('--sr-par', par + 'px');
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    document.addEventListener('keydown', e => this.onKey(e));
+    if (this.props.reduceMotion) document.documentElement.style.scrollBehavior = 'auto';
+    this.loadBusy();
+  }
+
+  updated() {
+    const book = document.getElementById('book');
+    if (book && book !== this.bookEl && 'IntersectionObserver' in window) {
+      this.bookEl = book;
+      if (this.io) this.io.disconnect();
+      this.io = new IntersectionObserver(entries => {
+        const v = entries[0].isIntersecting;
+        if (v !== this.state.bookVisible) this.setState({ bookVisible: v });
+      }, { threshold: 0.05 });
+      this.io.observe(book);
+    }
+    document.body.style.overflow = this.state.menuOpen || this.state.lightbox >= 0 ? 'hidden' : '';
+  }
+
+  applyLang() {
+    const t = DICT[this.state.lang];
+    document.documentElement.lang = this.state.lang === 'fr' ? 'fr-CA' : 'en-CA';
+    document.title = t.meta.title;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', t.meta.desc);
+  }
+
+  /* ---------- site ---------- */
+  setLang(lang) {
+    try { localStorage.setItem('sr_lang', lang); } catch (e) { /* storage blocked */ }
+    this.setState({ lang, err: {} });
+    this.applyLang();
+  }
+
+  toggleMenu() { this.setState({ menuOpen: !this.state.menuOpen }); }
+  closeMenu() { if (this.state.menuOpen) this.setState({ menuOpen: false }); }
+  toggleFaq(i) { this.setState({ faqOpen: this.state.faqOpen === i ? -1 : i }); }
+
+  onKey(e) {
+    if (e.key === 'Escape') {
+      if (this.state.lightbox >= 0) this.closeLightbox();
+      else if (this.state.menuOpen) this.closeMenu();
+    } else if (this.state.lightbox >= 0 && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
+      this.stepLightbox(e.key === 'ArrowRight' ? 1 : -1);
+    }
+  }
+
+  /* ---------- gallery ---------- */
+  setFilter(filter) { this.setState({ filter, lightbox: -1 }); }
+
+  filtered() {
+    return this.state.filter === 'all' ? this.works : this.works.filter(w => w.cat === this.state.filter);
+  }
+
+  openLightbox(i, e) {
+    this.lastFocus = e && e.target ? e.target.closest('button') : null;
+    this.setState({ lightbox: i });
+  }
+
+  closeLightbox() {
+    this.setState({ lightbox: -1 });
+    if (this.lastFocus) requestAnimationFrame(() => this.lastFocus && this.lastFocus.focus({ preventScroll: true }));
+  }
+
+  stepLightbox(dir) {
+    const n = this.filtered().length;
+    this.setState({ lightbox: (this.state.lightbox + dir + n) % n });
+  }
+
+  lbBackdrop(e) {
+    if (e.target.tagName !== 'IMG' && !e.target.closest('[data-slot]')) this.closeLightbox();
+  }
+
+  /* ---------- booking form ---------- */
+  setForm(patch, clear) {
+    const err = Object.assign({}, this.state.err);
+    (clear || Object.keys(patch)).forEach(k => delete err[k]);
+    this.setState({ f: Object.assign({}, this.state.f, patch), err });
+  }
+
+  setField(key, e) { this.setForm({ [key]: e.target.value }); }
+
+  pick(key, i) {
+    const clear = [key];
+    if (key === 'contact') clear.push('phone', 'instagram');
+    this.setForm({ [key]: i }, clear);
+  }
+
+  toggleAck(i, e) {
+    const acks = this.state.f.acks.slice();
+    acks[i] = e.target.checked;
+    this.setForm({ acks });
+  }
+
+  async addPhotos(e) {
+    const input = e.target;
+    const files = Array.from(input.files || []);
+    input.value = '';
+    if (!files.length) return;
+    const b = DICT[this.state.lang].book;
+    const photos = this.state.photos.slice();
+    let msg = '';
+    this.setState({ photoBusy: true, photoMsg: '' });
+    for (const file of files) {
+      if (photos.length >= 4) { msg = b.photoMax; break; }
+      try { photos.push(await resizeImage(file, 1200)); } catch (err) { msg = b.photoErr; }
+    }
+    this.setState({ photos, photoBusy: false, photoMsg: msg });
+  }
+
+  removePhoto(i) {
+    const photos = this.state.photos.slice();
+    const [gone] = photos.splice(i, 1);
+    if (gone) URL.revokeObjectURL(gone.thumb);
+    this.setState({ photos, photoMsg: '' });
+  }
+
+  pickDate(key) {
+    const err = Object.assign({}, this.state.err);
+    delete err.date;
+    this.setState({ date: key, slot: -1, takenMsg: false, err });
+  }
+
+  pickSlot(i) {
+    const err = Object.assign({}, this.state.err);
+    delete err.date;
+    this.setState({ slot: i, takenMsg: false, err });
+  }
+
+  shiftMonth(dir) {
+    const now = tzParts(new Date());
+    let { y, m } = this.state.month;
+    m += dir;
+    if (m < 1) { m = 12; y--; }
+    if (m > 12) { m = 1; y++; }
+    const idx = y * 12 + m, min = now.y * 12 + now.m;
+    if (idx < min || idx > min + 6) return;
+    this.setState({ month: { y, m } });
+    this.loadBusy();
+  }
+
+  async loadBusy() {
+    const p = this.props;
+    const source = p.bookingUrl ? 'script' : (p.gcalId && p.gcalKey ? 'gcal' : '');
+    if (!source) return;
+    const { y, m } = this.state.month;
+    const key = `${y}-${m}`;
+    if (this.busyByMonth[key]) return;
+    const from = new Date(zonedToUtc(y, m, 1, 0, 0)).toISOString();
+    const to = new Date(zonedToUtc(m === 12 ? y + 1 : y, m === 12 ? 1 : m + 1, 1, 0, 0)).toISOString();
+    this.setState({ busyState: 'loading' });
+    try {
+      let busy;
+      if (source === 'script') {
+        const url = p.bookingUrl + (p.bookingUrl.includes('?') ? '&' : '?') +
+          `action=busy&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+        const j = await (await fetch(url)).json();
+        if (!j.ok) throw new Error(j.error || 'busy failed');
+        busy = (j.busy || []).map(x => [+x.start, +x.end]);
+      } else {
+        const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(p.gcalId)}/events` +
+          `?key=${encodeURIComponent(p.gcalKey)}&timeMin=${encodeURIComponent(from)}&timeMax=${encodeURIComponent(to)}` +
+          '&singleEvents=true&maxResults=250';
+        const r = await fetch(url);
+        if (!r.ok) throw new Error('gcal ' + r.status);
+        const j = await r.json();
+        busy = (j.items || [])
+          .filter(ev => ev.status !== 'cancelled' && ev.transparency !== 'transparent')
+          .map(ev => {
+            if (ev.start.dateTime) return [Date.parse(ev.start.dateTime), Date.parse(ev.end.dateTime)];
+            const [sy, sm, sd] = ev.start.date.split('-').map(Number);
+            const [ey, em, ed] = ev.end.date.split('-').map(Number);
+            return [zonedToUtc(sy, sm, sd, 0, 0), zonedToUtc(ey, em, ed, 0, 0)];
+          });
+      }
+      this.busyByMonth[key] = busy;
+      const all = [].concat(...Object.values(this.busyByMonth));
+      this.setState({ busy: all, busyState: 'ok' });
+    } catch (err) {
+      console.warn('[skinreaper] availability', err);
+      this.setState({ busyState: 'error' });
+    }
+  }
+
+  slotsFor(dateKey) {
+    if (!dateKey) return [];
+    const [y, m, d] = dateKey.split('-').map(Number);
+    const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+    const b = DICT[this.state.lang].book;
+    const labels = dow === 6 ? b.slotsSat : (dow === 0 || dow === 1 ? [] : b.slotsWeek);
+    const now = Date.now();
+    return labels.map((label, i) => {
+      const { h, min, hours } = parseSlot(label);
+      const start = zonedToUtc(y, m, d, h, min);
+      const end = start + hours * 3600e3;
+      const blocked = start <= now || this.state.busy.some(x => x[0] < end && x[1] > start);
+      return { i, label, start, end, hours, blocked };
+    });
+  }
+
+  dateLabel(dateKey, opts) {
+    if (!dateKey) return '';
+    const [y, m, d] = dateKey.split('-').map(Number);
+    const locale = this.state.lang === 'fr' ? 'fr-CA' : 'en-CA';
+    return new Intl.DateTimeFormat(locale, Object.assign({ weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }, opts))
+      .format(new Date(Date.UTC(y, m - 1, d)));
+  }
+
+  validate(step) {
+    const st = this.state, f = st.f, b = DICT[st.lang].book;
+    const err = {};
+    if (step === 1) {
+      if (f.idea.trim().length < 10) err.idea = b.err.idea;
+      ['style', 'size', 'place', 'color', 'budget'].forEach(k => { if (f[k] < 0) err[k] = b.err.pick; });
+    }
+    if (step === 2) {
+      const sl = this.slotsFor(st.date)[st.slot];
+      if (!st.date || !sl) err.date = b.err.date;
+      else if (sl.blocked) err.date = b.taken;
+      if (f.first < 0) err.first = b.err.pick;
+    }
+    if (step === 3) {
+      if (f.pregnant < 0) err.pregnant = b.err.pick;
+      if (f.acks.some(a => !a)) err.acks = b.err.acks;
+      if (!f.name.trim()) err.name = b.err.name;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) err.email = b.err.email;
+      if (f.contact < 0) err.contact = b.err.pick;
+      if ((f.contact === 1 || f.contact === 2) && f.phone.replace(/\D/g, '').length < 7) err.phone = b.err.phone;
+      if (f.contact === 3 && f.instagram.replace(/[@\s]/g, '').length < 2) err.instagram = b.err.instagram;
+    }
+    return err;
+  }
+
+  submitStep() {
+    const st = this.state;
+    if (st.status) return;
+    if (st.step === 3 && st.f.pregnant === 0) return;
+    const err = this.validate(st.step);
+    if (Object.keys(err).length) {
+      this.setState({ err });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const el = document.querySelector('#book-form [aria-invalid="true"]');
+        if (el) el.scrollIntoView({ behavior: this.motionOff() ? 'auto' : 'smooth', block: 'center' });
+      }));
+      return;
+    }
+    if (st.step === 3) { this.send(); return; }
+    this.setState({ step: st.step + 1, err: {} });
+    this.scrollToForm();
+  }
+
+  prevStep() {
+    this.setState({ step: Math.max(1, this.state.step - 1), err: {} });
+    this.scrollToForm();
+  }
+
+  scrollToForm() {
+    requestAnimationFrame(() => {
+      const el = document.getElementById('book-form');
+      if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ behavior: this.motionOff() ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+
+  selectedSlot() {
+    return this.slotsFor(this.state.date)[this.state.slot] || null;
+  }
+
+  summaryRows() {
+    const st = this.state, f = st.f, b = DICT[st.lang].book;
+    const sl = this.selectedSlot();
+    const opt = (list, i) => (i >= 0 ? list[i] : '');
+    const rows = [
+      { k: b.idea, v: f.idea.trim() },
+      { k: b.style, v: opt(b.styles, f.style) },
+      { k: b.size, v: opt(b.sizes, f.size) },
+      { k: b.place, v: opt(b.places, f.place) },
+      { k: b.color, v: opt(b.colors, f.color) },
+      { k: b.budget, v: opt(b.budgets, f.budget) },
+      { k: b.sumPhotos, v: st.photos.length ? String(st.photos.length) : '' },
+      { k: b.sumDate, v: this.dateLabel(st.date, { year: 'numeric' }) },
+      { k: b.sumTime, v: sl ? sl.label : '' },
+      { k: b.first, v: opt(b.yesNo, f.first) },
+      { k: b.sumName, v: f.name.trim() },
+      { k: b.email, v: f.email.trim() },
+      { k: b.phone, v: f.phone.trim() },
+      { k: b.instagram, v: f.instagram.trim() },
+      { k: b.contact, v: opt(b.contacts, f.contact) }
+    ];
+    return rows.map(r => ({ k: r.k, v: r.v || '—', empty: !r.v }));
+  }
+
+  summaryText() {
+    const b = DICT[this.state.lang].book;
+    return b.mailSubject + '\n\n' + this.summaryRows().filter(r => !r.empty).map(r => `${r.k}: ${r.v}`).join('\n') +
+      (this.state.photos.length ? `\n\n${this.state.photos.length} ${b.photosNote}` : '');
+  }
+
+  calendarLink(sl) {
+    const f = this.state.f;
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      `&text=${encodeURIComponent('Tattoo — ' + f.name.trim())}` +
+      `&dates=${gcalStamp(sl.start)}/${gcalStamp(sl.end)}` +
+      `&details=${encodeURIComponent(this.summaryText())}` +
+      `&location=${encodeURIComponent(LOCATION)}&ctz=${encodeURIComponent(TZ)}`;
+  }
+
+  payload() {
+    const st = this.state, f = st.f, b = DICT[st.lang].book;
+    const sl = this.selectedSlot();
+    return {
+      lang: st.lang,
+      idea: f.idea.trim(),
+      style: b.styles[f.style],
+      size: b.sizes[f.size],
+      placement: b.places[f.place],
+      ink: b.colors[f.color],
+      budget: b.budgets[f.budget],
+      date: st.date,
+      slot: sl.label,
+      start: new Date(sl.start).toISOString(),
+      end: new Date(sl.end).toISOString(),
+      hours: sl.hours,
+      dateLabel: this.dateLabel(st.date, { year: 'numeric' }),
+      firstTattoo: b.yesNo[f.first],
+      pregnant: f.pregnant === 0,
+      acknowledged: f.acks.every(Boolean),
+      name: f.name.trim(),
+      email: f.email.trim(),
+      phone: f.phone.trim(),
+      instagram: f.instagram.trim(),
+      contact: b.contacts[f.contact],
+      photos: st.photos.map(ph => ({ name: ph.name, type: 'image/jpeg', data: ph.data.split(',')[1] })),
+      company: f.company,
+      tz: TZ,
+      page: location.href
+    };
+  }
+
+  async send() {
+    const p = this.props;
+    const data = this.payload();
+    const sl = this.selectedSlot();
+    this.setState({ status: 'sending', err: {}, copied: false });
+    this.scrollToForm();
+    try {
+      if (p.bookingUrl) {
+        const r = await fetch(p.bookingUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        });
+        const j = await r.json();
+        if (j.ok) {
+          this.busyByMonth = {};
+          this.setState({ status: 'booked' });
+          return;
+        }
+        if (j.error === 'slot_taken') {
+          this.busyByMonth = {};
+          this.setState({ status: '', step: 2, slot: -1, takenMsg: true });
+          this.loadBusy();
+          this.scrollToForm();
+          return;
+        }
+        throw new Error(j.error || 'booking failed');
+      }
+
+      if (!p.formEndpoint) throw new Error('no endpoint');
+      const body = {
+        _subject: `${DICT.en.book.mailSubject} — ${data.name} — ${data.dateLabel}, ${data.slot}`,
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: data.email,
+        _honey: data.company,
+        Name: data.name,
+        Email: data.email,
+        Phone: data.phone || '—',
+        Instagram: data.instagram || '—',
+        'Preferred contact': data.contact,
+        Date: data.dateLabel,
+        Time: `${data.slot} (${data.hours} h, ${TZ})`,
+        'First tattoo': data.firstTattoo,
+        Idea: data.idea,
+        Style: data.style,
+        Size: data.size,
+        Placement: data.placement,
+        Ink: data.ink,
+        Budget: data.budget,
+        'Reference photos': data.photos.length ? `${data.photos.length} chosen, ask the client to send them` : 'None',
+        'Add to my calendar': this.calendarLink(sl),
+        Language: data.lang === 'fr' ? 'Français' : 'English'
+      };
+      const r = await fetch(p.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === false || j.success === 'false') throw new Error(j.message || 'form endpoint failed');
+      this.setState({ status: 'delivered' });
+    } catch (err) {
+      console.warn('[skinreaper] send', err);
+      this.setState({ status: 'failed' });
+    }
+  }
+
+  async copyRequest() {
+    const text = this.summaryText();
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e2) { /* nothing else to try */ }
+      ta.remove();
+    }
+    this.setState({ copied: true });
+    clearTimeout(this.copyTimer);
+    this.copyTimer = setTimeout(() => this.setState({ copied: false }), 2500);
+  }
+
+  retry() { this.setState({ status: '', step: 3 }); }
+
+  newRequest() {
+    this.state.photos.forEach(ph => URL.revokeObjectURL(ph.thumb));
+    this.setState({ status: '', step: 1, f: emptyForm(), photos: [], photoMsg: '', date: '', slot: -1, err: {}, takenMsg: false, copied: false });
+    this.scrollToForm();
+  }
+
+  /* ---------- values for the template ---------- */
+  renderVals() {
+    const st = this.state, p = this.props, d = st.desktop, lang = st.lang;
+    const t = DICT[lang], b = t.book;
+    const s = makeStyles(d);
+    const auto = !!p.bookingUrl;
+    const bk = auto ? Object.assign({ intro: b.intro, send: b.send, sending: b.sending }, AUTO[lang]) : { intro: b.intro, send: b.send, sending: b.sending };
+
+    const navStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid ${st.scrolled && !st.menuOpen ? '#1A1A1A' : 'transparent'};` +
+      `background:${st.scrolled || st.menuOpen ? 'rgba(10,10,10,.9)' : 'transparent'};` +
+      (st.scrolled && !st.menuOpen ? '-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);' : '');
+
+    const ids = ['work', 'about', 'styles', 'pricing', 'aftercare', 'faq', 'policies', 'studio'];
+    const navMobile = ids.concat('book').map(id => ({ id, label: t.nav[id] }));
+    const navDesktop = ['work', 'about', 'styles', 'pricing', 'faq', 'studio'].map(id => ({ id, label: t.nav[id] }));
+
+    const img = path => ({ path, src: ImageSlot.src(path), missing: ImageSlot.missing(path) });
+    const works = this.works.map(w => Object.assign(img(w.src), {
+      cat: w.cat,
+      place: w.place[lang],
+      catLabel: this.catLabels[w.cat][lang],
+      alt: `${t.work.alt}, ${w.place[lang].toLowerCase()}`
+    }));
+    const gallery = st.filter === 'all' ? works : works.filter(w => w.cat === st.filter);
+    const filters = [{ key: 'all', label: t.work.all, count: works.length }]
+      .concat(Object.keys(this.catLabels).map(k => ({ key: k, label: this.catLabels[k][lang], count: works.filter(w => w.cat === k).length })))
+      .map(fl => Object.assign(fl, { on: fl.key === st.filter }));
+    const lb = st.lightbox >= 0 && gallery[st.lightbox]
+      ? Object.assign({}, gallery[st.lightbox], { n: st.lightbox + 1, total: gallery.length })
+      : null;
+
+    /* calendar */
+    const now = tzParts(new Date());
+    const todayKey = ymd(now.y, now.m, now.d);
+    const { y, m } = st.month;
+    const firstDow = new Date(Date.UTC(y, m - 1, 1)).getUTCDay();
+    const nDays = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    const cells = [];
+    for (let k = 0; k < (firstDow + 6) % 7; k++) cells.push({ blank: true });
+    for (let day = 1; day <= nDays; day++) {
+      const key = ymd(y, m, day);
+      const dow = new Date(Date.UTC(y, m - 1, day)).getUTCDay();
+      const closed = dow === 0 || dow === 1;
+      const past = key < todayKey;
+      const full = !closed && !past && this.slotsFor(key).every(x => x.blocked);
+      const disabled = closed || past || full;
+      const selected = st.date === key;
+      const isToday = key === todayKey;
+      const style = 'height:44px;min-width:0;width:100%;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:15px;font-weight:500;' +
+        (selected ? 'background:#F2F2F0;color:#0A0A0A;border:1px solid #F2F2F0;cursor:pointer;'
+          : disabled ? `background:transparent;color:#3A3A38;border:1px solid transparent;cursor:default;${full ? 'text-decoration:line-through;' : ''}`
+          : 'background:transparent;color:#F2F2F0;border:1px solid #2A2A28;cursor:pointer;') +
+        (isToday && !selected ? 'box-shadow:inset 0 -2px 0 #8C8C88;' : '');
+      const aria = this.dateLabel(key) + (closed ? `, ${b.closed}` : full ? `, ${b.fullDay}` : '');
+      cells.push({ day, key, disabled, selected, style, aria });
+    }
+    const monthIdx = y * 12 + m, minIdx = now.y * 12 + now.m;
+    const cal = {
+      key: `${y}-${m}`,
+      title: new Intl.DateTimeFormat(lang === 'fr' ? 'fr-CA' : 'en-CA', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, 1))),
+      canPrev: monthIdx > minIdx,
+      canNext: monthIdx < minIdx + 6,
+      cells
+    };
+
+    const slots = this.slotsFor(st.date).map(x => Object.assign(x, {
+      on: x.i === st.slot,
+      style: 'min-height:52px;padding:10px 14px;font-family:Archivo,sans-serif;font-size:15px;font-weight:500;text-align:left;' +
+        (x.i === st.slot ? 'background:#F2F2F0;color:#0A0A0A;border:1px solid #F2F2F0;cursor:pointer;'
+          : x.blocked ? 'background:transparent;color:#3A3A38;border:1px solid #1A1A1A;cursor:default;text-decoration:line-through;'
+          : 'background:transparent;color:#F2F2F0;border:1px solid #2A2A28;cursor:pointer;')
+    }));
+    const isSat = st.date && new Date(st.date + 'T12:00:00Z').getUTCDay() === 6;
+    const slotGrid = `display:grid;grid-template-columns:${isSat ? '1fr' : `repeat(${d ? 3 : 2},1fr)`};gap:8px;`;
+
+    /* form groups */
+    const f = st.f;
+    const group = (key, label, list) => ({ key, label, options: list.map((o, i) => ({ i, label: o, on: f[key] === i })) });
+    const groups1 = [
+      group('style', b.style, b.styles),
+      group('size', b.size, b.sizes),
+      group('place', b.place, b.places),
+      group('color', b.color, b.colors),
+      group('budget', b.budget, b.budgets)
+    ];
+    const groups2 = [group('first', b.first, b.yesNo)];
+    const groups3a = [group('pregnant', b.pregnant, b.yesNo)];
+    const groups3b = [group('contact', b.contact, b.contacts)];
+    const acks = b.acks.map((label, i) => ({ label, on: f.acks[i] }));
+    const needPhone = f.contact === 1 || f.contact === 2;
+    const needIg = f.contact === 3;
+    const inputs = [
+      { key: 'name', label: b.name, type: 'text', auto: 'name', mode: 'text', ph: '', req: true },
+      { key: 'email', label: b.email, type: 'email', auto: 'email', mode: 'email', ph: '', req: true },
+      { key: 'phone', label: b.phone, type: 'tel', auto: 'tel', mode: 'tel', ph: '', req: needPhone },
+      { key: 'instagram', label: b.instagram, type: 'text', auto: 'off', mode: 'text', ph: b.igPh, req: needIg }
+    ].map(x => Object.assign(x, { value: f[x.key], err: st.err[x.key] || '' }));
+
+    const stepper = b.steps.map((label, i) => {
+      const n = i + 1, on = n === st.step, done = n < st.step;
+      return {
+        label, on,
+        style: `padding-top:12px;border-top:2px solid ${on ? '#F2F2F0' : done ? '#6E6E6B' : '#2A2A28'};font-size:${d ? 12 : 11}px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:${on ? '#F2F2F0' : done ? '#A6A6A2' : '#6E6E6B'};`
+      };
+    });
+
+    const summary = this.summaryRows();
+    const mailtoHref = st.status === 'failed'
+      ? `mailto:${EMAIL}?subject=${encodeURIComponent(b.mailSubject + ' — ' + f.name.trim())}&body=${encodeURIComponent(this.summaryText().slice(0, 1800))}`
+      : '';
+
+    return {
+      t, s, d, bk, auto, navStyle, navMobile, navDesktop,
+      rootClass: p.reduceMotion ? 'sr-rm' : '',
+      EMAIL, IG_URL, MAPS_URL,
+      heroImg: img(this.heroSrc),
+      aboutImg: img(this.aboutSrc),
+      studioImg: img(this.studioSrc),
+      gallery, filters, lb,
+      cal, slots, slotGrid,
+      dateLabel: this.dateLabel(st.date),
+      groups1, groups2, groups3a, groups3b, acks, inputs, stepper,
+      blocked: st.step === 3 && f.pregnant === 0,
+      hasErr: Object.keys(st.err).length > 0,
+      summary, mailtoHref,
+      showBar: !d && !st.bookVisible && !st.menuOpen && !lb
+    };
+  }
+}
+
+DC.mount(Component, document.querySelector('x-dc'), PROPS);
+</script>
+</body>
+</html>
