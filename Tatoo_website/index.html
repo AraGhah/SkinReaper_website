@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0A0A0A">
-<title>Skinreaper — Tattoo artist, Montréal</title>
+<title>Skinreaper, tattoo artist in Montréal</title>
 <meta name="description" content="Skinreaper, tattoo artist at Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal. Cybersigilism, neo-tribal and custom lettering. Book a session online.">
 <script src="./support.js"></script>
 <script src="./image-slot.js"></script>
@@ -156,11 +156,7 @@
     <section id="work" style="{{ s.section }}">
       <div style="{{ s.wrap }}">
         <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.work.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.work.title }}</h2>
-            <p class="rv" style="{{ s.body }};margin-top:20px;max-width:46ch;">{{ t.work.intro }}</p>
-          </div>
+          <h2 class="rv" style="{{ s.h2 }}">{{ t.work.title }}</h2>
           <div role="group" aria-label="{{ t.work.filter }}" style="display:flex;flex-wrap:wrap;gap:8px;">
             <sc-for each="filters" as="fl"><button type="button" on-click="setFilter(fl.key)" aria-pressed="{{ fl.on ? 'true' : 'false' }}" style="{{ fl.on ? s.chipOn : s.chipOff }}">{{ fl.label }}<span style="opacity:.5;margin-left:8px;">{{ fl.count }}</span></button></sc-for>
           </div>
@@ -191,45 +187,11 @@
           <sc-else><img src="{{ aboutImg.src }}" alt="{{ t.about.alt }}" loading="lazy" style="{{ s.cover }}"></sc-else>
         </div>
         <div>
-          <p class="rv" style="{{ s.kicker }}">{{ t.about.kicker }}</p>
           <h2 class="rv" style="{{ s.h2 }}">{{ t.about.title }}</h2>
-          <p class="rv" style="{{ s.lead }};margin-top:32px;">{{ t.about.lead }}</p>
-          <sc-for each="t.about.body" as="para"><p class="rv" style="{{ s.body }};margin-top:20px;max-width:60ch;">{{ para }}</p></sc-for>
-          <dl style="{{ s.facts }}">
-            <sc-for each="t.about.facts" as="fact">
-              <div class="rv-row" style="{{ s.fact }}">
-                <dt style="{{ s.label }};margin-bottom:8px;">{{ fact.k }}</dt>
-                <dd style="margin:0;font-size:16px;color:#F2F2F0;">{{ fact.v }}</dd>
-              </div>
-            </sc-for>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- STYLES -->
-    <section id="styles" style="{{ s.section }}">
-      <div style="{{ s.wrap }}">
-        <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.styles.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.styles.title }}</h2>
-          </div>
-          <p class="rv" style="{{ s.body }};max-width:40ch;">{{ t.styles.intro }}</p>
-        </div>
-        <ol style="list-style:none;margin:0;padding:0;border-top:1px solid #1F1F1E;">
-          <sc-for each="t.styles.items" as="it">
-            <li class="rv-row" style="{{ s.row }}">
-              <span style="{{ s.rowNum }}">0{{ i + 1 }}</span>
-              <h3 style="{{ s.h3 }};font-size:{{ d ? 44 : 30 }}px;">{{ it.n }}</h3>
-              <p style="{{ s.body }};{{ d ? '' : 'grid-column:2;' }}">{{ it.d }}</p>
-            </li>
-          </sc-for>
-        </ol>
-        <div class="rv" style="margin-top:48px;">
-          <p style="{{ s.label }}">{{ t.styles.noTitle }}</p>
-          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;">
-            <sc-for each="t.styles.no" as="n"><li style="{{ s.tag }}">{{ n }}</li></sc-for>
+          <p class="rv" style="{{ s.lead }};margin-top:28px;">{{ t.about.lead }}</p>
+          <p class="rv" style="{{ s.body }};margin-top:18px;max-width:60ch;">{{ t.about.body }}</p>
+          <ul class="rv" aria-label="{{ t.about.stylesLabel }}" style="list-style:none;margin:32px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;">
+            <sc-for each="t.about.styles" as="st"><li style="{{ s.tag }}">{{ st }}</li></sc-for>
           </ul>
         </div>
       </div>
@@ -239,10 +201,7 @@
     <section id="pricing" style="{{ s.section }}">
       <div style="{{ s.wrap }}">
         <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.pricing.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.pricing.title }}</h2>
-          </div>
+          <h2 class="rv" style="{{ s.h2 }}">{{ t.pricing.title }}</h2>
           <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.pricing.intro }}</p>
         </div>
         <div style="{{ s.rates }}">
@@ -260,43 +219,12 @@
       </div>
     </section>
 
-    <!-- AFTERCARE -->
-    <section id="aftercare" style="{{ s.section }}">
-      <div style="{{ s.wrap }}">
-        <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.aftercare.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.aftercare.title }}</h2>
-          </div>
-          <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.aftercare.intro }}</p>
-        </div>
-        <ol style="{{ s.care }}">
-          <sc-for each="t.aftercare.steps" as="c">
-            <li class="rv" style="border-top:1px solid #1F1F1E;padding-top:22px;">
-              <p style="{{ s.rowNum }};margin:0 0 14px;">0{{ i + 1 }}</p>
-              <h3 style="{{ s.h3 }};font-size:{{ d ? 30 : 26 }}px;">{{ c.t }}</h3>
-              <p style="{{ s.body }};margin-top:12px;">{{ c.d }}</p>
-            </li>
-          </sc-for>
-        </ol>
-        <div class="rv" role="note" style="{{ s.warn }}">
-          <span aria-hidden="true" style="font-family:Anton,Impact,sans-serif;font-size:28px;line-height:1;color:#E0736B;">!</span>
-          <div>
-            <p style="{{ s.label }};color:#E0736B;margin-bottom:8px;">{{ t.aftercare.warnTitle }}</p>
-            <p style="{{ s.body }};color:#D8D8D4;">{{ t.aftercare.warn }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ -->
     <section id="faq" style="{{ s.section }}">
       <div style="{{ s.wrap }}">
         <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.faq.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.faq.title }}</h2>
-          </div>
+          <h2 class="rv" style="{{ s.h2 }}">{{ t.faq.title }}</h2>
+          <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.faq.intro }}</p>
         </div>
         <div style="border-top:1px solid #1F1F1E;max-width:1000px;">
           <sc-for each="t.faq.items" as="q">
@@ -318,40 +246,18 @@
       </div>
     </section>
 
-    <!-- POLICIES -->
-    <section id="policies" style="{{ s.section }}">
-      <div style="{{ s.wrap }}">
-        <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.policies.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.policies.title }}</h2>
-          </div>
-          <p class="rv" style="{{ s.body }};max-width:42ch;">{{ t.policies.intro }}</p>
-        </div>
-        <div style="{{ s.policies }}">
-          <sc-for each="t.policies.items" as="po">
-            <div class="rv" style="padding:28px 0;border-top:1px solid #1F1F1E;">
-              <h3 style="{{ s.h3 }};font-size:{{ d ? 28 : 24 }}px;">{{ po.t }}</h3>
-              <p style="{{ s.body }};margin-top:12px;">{{ po.d }}</p>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </section>
-
     <!-- BOOKING -->
     <section id="book" style="{{ s.section }};background:#0D0D0D;">
       <div style="{{ s.wrap }}{{ s.bookGrid }}">
         <div style="{{ s.bookAside }}">
-          <p class="rv" style="{{ s.kicker }}">{{ t.book.kicker }}</p>
           <h2 class="rv" style="{{ s.h2 }}">{{ t.book.title }}</h2>
           <p class="rv" style="{{ s.body }};margin-top:24px;max-width:42ch;">{{ bk.intro }}</p>
-          <sc-if test="d && !status">
-            <div style="margin-top:48px;">
+          <sc-if test="d && !status && summary.length">
+            <div style="margin-top:40px;">
               <p style="{{ s.label }}">{{ t.book.summary }}</p>
               <dl style="margin:0;border-top:1px solid #1F1F1E;">
                 <sc-for each="summary" as="row">
-                  <div style="{{ s.sumRow }}"><dt style="color:#6E6E6B;">{{ row.k }}</dt><dd style="margin:0;color:{{ row.empty ? '#3A3A38' : '#D8D8D4' }};overflow-wrap:anywhere;">{{ row.v }}</dd></div>
+                  <div style="{{ s.sumRow }}"><dt style="color:#6E6E6B;">{{ row.k }}</dt><dd style="margin:0;color:#D8D8D4;overflow-wrap:anywhere;">{{ row.v }}</dd></div>
                 </sc-for>
               </dl>
             </div>
@@ -464,7 +370,7 @@
                     <sc-if test="takenMsg"><p role="alert" style="{{ s.err }}">{{ t.book.taken }}</p></sc-if>
                   </div>
                   <div style="{{ s.field }}">
-                    <span style="{{ s.label }}">{{ t.book.pickSlot }}<sc-if test="dateLabel"> · <span style="color:#F2F2F0;">{{ dateLabel }}</span></sc-if></span>
+                    <span style="{{ s.label }}">{{ t.book.pickSlot }}<sc-if test="dateLabel">: <span style="color:#F2F2F0;">{{ dateLabel }}</span></sc-if></span>
                     <sc-if test="!date"><p style="{{ s.small }}">{{ t.book.noDay }}</p></sc-if>
                     <sc-else>
                       <div data-key="slots-{{ date }}" style="{{ slotGrid }}">
@@ -551,10 +457,7 @@
     <section id="studio" style="{{ s.section }}">
       <div style="{{ s.wrap }}">
         <div style="{{ s.head }}">
-          <div>
-            <p class="rv" style="{{ s.kicker }}">{{ t.studio.kicker }}</p>
-            <h2 class="rv" style="{{ s.h2 }}">{{ t.studio.title }}</h2>
-          </div>
+          <h2 class="rv" style="{{ s.h2 }}">{{ t.studio.title }}</h2>
           <p class="rv" style="{{ s.body }};max-width:40ch;">{{ t.studio.note }}</p>
         </div>
         <div style="{{ s.studioGrid }}">
@@ -578,10 +481,7 @@
               </div>
             </div>
             <iframe class="rv" title="{{ t.studio.mapTitle }}" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.5790%2C45.5110%2C-73.5640%2C45.5180&amp;layer=mapnik&amp;marker=45.5145%2C-73.5715" loading="lazy" referrerpolicy="no-referrer" style="{{ s.map }}"></iframe>
-            <div class="rv" style="display:flex;flex-wrap:wrap;gap:10px;">
-              <a href="{{ MAPS_URL }}" target="_blank" rel="noopener" style="{{ s.btn }}">{{ t.studio.directions }}</a>
-              <a href="#book" style="{{ s.btnGhost }}">{{ t.hero.cta }}</a>
-            </div>
+            <a class="rv" href="{{ MAPS_URL }}" target="_blank" rel="noopener" style="{{ s.btn }};align-self:flex-start;">{{ t.studio.directions }}</a>
           </div>
         </div>
       </div>
@@ -591,29 +491,19 @@
   <!-- FOOTER -->
   <footer style="{{ s.footer }}">
     <div style="{{ s.wrap }}">
-      <div style="display:grid;grid-template-columns:{{ d ? '2fr 1fr 1fr 1fr' : '1fr 1fr' }};gap:{{ d ? 40 : 28 }}px;">
-        <div style="{{ d ? '' : 'grid-column:1 / -1;' }}">
-          <p style="{{ s.h3 }};font-size:28px;">Skinreaper</p>
-          <p style="{{ s.small }};margin-top:12px;max-width:34ch;">{{ t.footer.tagline }}</p>
-        </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;">
         <div>
-          <p style="{{ s.label }}">{{ t.footer.contact }}</p>
+          <p style="{{ s.h3 }};font-size:28px;">Skinreaper</p>
+          <p style="{{ s.small }};margin-top:8px;">{{ t.footer.tagline }}</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 24px;">
           <a href="mailto:{{ EMAIL }}" style="{{ s.footLink }}">{{ EMAIL }}</a>
           <a href="{{ IG_URL }}" target="_blank" rel="noopener" style="{{ s.footLink }}">@_skinreaper</a>
         </div>
-        <div>
-          <p style="{{ s.label }}">{{ t.footer.hoursTitle }}</p>
-          <p style="{{ s.small }}">{{ t.footer.hours }}</p>
-        </div>
-        <div>
-          <p style="{{ s.label }}">{{ t.footer.studioTitle }}</p>
-          <a href="{{ MAPS_URL }}" target="_blank" rel="noopener" style="{{ s.footLink }}">Velours Tattoo<br>3455 Saint-Laurent</a>
-        </div>
       </div>
-      <p aria-hidden="true" style="{{ s.giant }}">Skinreaper</p>
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid #1A1A1A;padding-top:24px;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;border-top:1px solid #1A1A1A;padding-top:20px;margin-top:32px;">
         <p style="{{ s.small }}">{{ t.footer.rights }}</p>
-        <p style="{{ s.small }}">{{ t.footer.age }} · <a href="#top" style="color:#A6A6A2;">{{ t.footer.top }} ↑</a></p>
+        <p style="{{ s.small }};display:flex;gap:20px;"><span>{{ t.footer.age }}</span><a href="#top" style="color:#A6A6A2;">{{ t.footer.top }} ↑</a></p>
       </div>
     </div>
   </footer>
@@ -622,7 +512,7 @@
   <sc-if test="lb">
     <div class="sr-fadein" role="dialog" aria-modal="true" aria-label="{{ t.work.title }}" style="{{ s.lb }}">
       <div style="{{ s.lbTop }}">
-        <span style="{{ s.small }}">{{ lb.n }} {{ t.work.of }} {{ lb.total }} · {{ lb.place }} · {{ lb.catLabel }}</span>
+        <span style="{{ s.small }}">{{ lb.n }} {{ t.work.of }} {{ lb.total }}, {{ lb.place }}, {{ lb.catLabel }}</span>
         <button type="button" on-click="closeLightbox()" style="{{ s.menuBtn }}">{{ t.work.close }} ✕</button>
       </div>
       <div on-click="lbBackdrop()" style="{{ s.lbStage }}">
@@ -651,7 +541,7 @@
 
 <script>
 /* ------------------------------------------------------------------ *
- * PROPS — site configuration (the "Tweaks" of the component)
+ * PROPS: site configuration (the "Tweaks" of the component)
  * ------------------------------------------------------------------ */
 const PROPS = {
   lang: 'en',            // default language, 'en' or 'fr'
@@ -669,17 +559,17 @@ const LOCATION = 'Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal, QC H2X 2T6
 const TZ = 'America/Toronto';
 
 /* ------------------------------------------------------------------ *
- * DICT — every visible string, English and French
+ * DICT: every visible string, English and French
  * ------------------------------------------------------------------ */
 const DICT = {
   en: {
     meta: {
-      title: 'Skinreaper — Tattoo artist, Montréal',
+      title: 'Skinreaper, tattoo artist in Montréal',
       desc: 'Skinreaper, tattoo artist at Velours Tattoo, 3455 Saint-Laurent Blvd, Montréal. Cybersigilism, neo-tribal and custom lettering. Book a session online.'
     },
-    nav: { work: 'Work', about: 'About', styles: 'Styles', pricing: 'Pricing', aftercare: 'Aftercare', faq: 'FAQ', policies: 'Policies', book: 'Book', studio: 'Studio', menu: 'Menu', close: 'Close' },
+    nav: { work: 'Work', about: 'About', pricing: 'Pricing', faq: 'FAQ', book: 'Book', studio: 'Studio', menu: 'Menu', close: 'Close' },
     hero: {
-      kicker: 'Tattoo artist · Velours Tattoo · Montréal',
+      kicker: 'Tattoo artist at Velours Tattoo, Montréal',
       lines: ['Sharp lines', 'for dark', 'stories'],
       sub: 'Cybersigilism, neo-tribal and custom lettering, drawn for your body and nobody else’s.',
       cta: 'Book a session',
@@ -689,9 +579,7 @@ const DICT = {
     },
     slot: { drop: 'Drop a photo here' },
     work: {
-      kicker: '01 — Work',
       title: 'Selected work',
-      intro: 'Fresh and healed pieces from the studio. Tap a photo to see it full size.',
       filter: 'Filter the work',
       all: 'All',
       open: 'Open photo',
@@ -702,35 +590,14 @@ const DICT = {
       of: 'of'
     },
     about: {
-      kicker: '02 — About',
       title: 'The artist',
       lead: 'I’m Skinreaper. I tattoo out of Velours Tattoo on Saint-Laurent, and I draw every piece for the person wearing it.',
-      body: [
-        'My work lives between cybersigilism, neo-tribal and lettering: sharp, flowing black lines that follow the muscles and bones instead of sitting on top of them.',
-        'I start from your idea, your references and your placement, then build the design around the way you move. No copies, no flash recycled from someone else.'
-      ],
-      facts: [
-        { k: 'Studio', v: 'Velours Tattoo, Montréal' },
-        { k: 'Focus', v: 'Cybersigilism, lettering' },
-        { k: 'Languages', v: 'English, French' }
-      ],
+      body: 'Sharp, flowing black lines that follow the muscles instead of sitting on top of them. I start from your idea and your placement, and I never copy another artist’s work. No realistic portraits, no large solid cover-ups.',
+      stylesLabel: 'Styles',
+      styles: ['Cybersigilism', 'Neo-tribal', 'Lettering', 'Fine line blackwork'],
       alt: 'Skinreaper at work'
     },
-    styles: {
-      kicker: '03 — Styles',
-      title: 'What I tattoo',
-      intro: 'Black ink, line-driven, made to fit the body. Not sure your idea fits? Ask anyway.',
-      items: [
-        { n: 'Cybersigilism', d: 'Thin, sharp, symmetrical lines with spikes and curves that wrap around the body. Clean black, no shading noise.' },
-        { n: 'Neo-tribal', d: 'Bolder flowing shapes inspired by tribal work, redrawn with a modern, aggressive edge.' },
-        { n: 'Lettering & script', d: 'Custom words, names and dates. Gothic, chrome, handwritten or fully invented letterforms.' },
-        { n: 'Fine line blackwork', d: 'Small to medium pieces with clean detail: symbols, ornaments, small sigils.' }
-      ],
-      noTitle: 'What I don’t take',
-      no: ['Realistic portraits', 'Copies of another artist’s custom work', 'Large solid cover-ups', 'Hate symbols']
-    },
     pricing: {
-      kicker: '04 — Pricing',
       title: 'Pricing',
       intro: 'Every piece is quoted after I read your request. These rates are a starting point.',
       rates: [
@@ -741,50 +608,20 @@ const DICT = {
       ],
       note: 'Prices in Canadian dollars, taxes not included. The final price is confirmed once the design is agreed. Deposit terms are being finalised.'
     },
-    aftercare: {
-      kicker: '05 — Aftercare',
-      title: 'Aftercare',
-      intro: 'A tattoo heals in two to four weeks. How you treat it now decides how it looks in ten years.',
-      steps: [
-        { t: 'First hours', d: 'Keep the wrap on as long as I tell you at the end of the session. Always wash your hands before touching the tattoo.' },
-        { t: 'Wash', d: 'Two to three times a day, gently, with lukewarm water and unscented soap. Pat dry with clean paper towel.' },
-        { t: 'Moisturise', d: 'A very thin layer of unscented aftercare cream when the skin feels tight. Less is more.' },
-        { t: 'Let it peel', d: 'Flaking and itching are normal after a few days. Don’t scratch, pick or peel.' },
-        { t: 'Avoid for 3 weeks', d: 'Pools, baths, sea, sauna, tanning and direct sun. Wear loose, clean clothes over it.' },
-        { t: 'For life', d: 'Once healed, use sunscreen on the tattoo. Sun is what blurs lines over the years.' }
-      ],
-      warnTitle: 'Warning signs',
-      warn: 'Redness that spreads, heat, swelling that gets worse, pus or fever are not normal healing. Write to me and see a doctor or pharmacist right away.'
-    },
     faq: {
-      kicker: '06 — FAQ',
       title: 'Questions',
+      intro: 'Booking, the day itself and aftercare.',
       items: [
-        { q: 'How do I book?', a: 'Use the booking form on this page: describe the tattoo, pick a day and time, then leave your details. I answer every request myself.' },
-        { q: 'How much will my tattoo cost?', a: 'It depends on size, detail and placement. The minimum is $120, most work is $150 per hour, a Saturday half day (4 h) is $500 and a full day (8 h) is $900. Prices in CAD, before taxes. You get a quote before anything is booked for good.' },
-        { q: 'When do you tattoo?', a: 'Tuesday to Friday, with sessions starting between 11:00 and 18:00. Saturdays are for full day (8 h) or half day (4 h) sessions. Closed Sunday and Monday.' },
-        { q: 'Is it OK if it’s my first tattoo?', a: 'Of course. Tell me in the form and I’ll walk you through everything on the day: placement, stencil, breaks, aftercare.' },
-        { q: 'Can I bring my own design or references?', a: 'Yes, references help a lot. Add up to four photos in the form. I’ll draw something original from them; I don’t copy another artist’s custom piece.' },
-        { q: 'Do you do cover-ups?', a: 'Case by case. Send a clear photo of the old tattoo in the form and I’ll tell you honestly what is possible.' },
-        { q: 'How old do I need to be?', a: '18 or older, with a valid photo ID on the day. No exceptions, even with parental consent.' },
-        { q: 'What about medication or health conditions?', a: 'Don’t write medical details in the form. Tell me directly, or note them on the consent form at the studio.' }
-      ]
-    },
-    policies: {
-      kicker: '07 — Policies',
-      title: 'Policies',
-      intro: 'Short and clear, so the day goes well for both of us.',
-      items: [
-        { t: '18+ only', d: 'I only tattoo adults. Bring a valid photo ID to your session.' },
-        { t: 'Deposit & cancellation', d: 'Deposit, rescheduling and no-show terms are being finalised. They will be confirmed in writing when your session is booked.' },
-        { t: 'Touch-ups', d: 'Touch-up terms are being finalised. Follow the aftercare closely: it is the best way to avoid needing one.' },
-        { t: 'Pregnancy & breastfeeding', d: 'I don’t tattoo during pregnancy or while breastfeeding. You are welcome to book after.' },
-        { t: 'Health & medication', d: 'Some medication and conditions affect healing. Tell me directly or on the consent form. This website never asks for medical details.' },
-        { t: 'On the day', d: 'Eat before you come, drink water, no alcohol for 24 hours before. Wear clothes that give easy access to the placement.' }
+        { q: 'How do I book?', a: 'Use the form below: describe the tattoo, pick a day and time, then leave your details. I answer every request myself.' },
+        { q: 'When do you tattoo?', a: 'Tuesday to Friday, sessions start between 11:00 and 18:00. Saturdays are full days (8 h) or half days (4 h). Closed Sunday and Monday.' },
+        { q: 'What about the deposit and cancellations?', a: 'Deposit, rescheduling and no-show terms are being finalised. They will be confirmed in writing when your session is booked.' },
+        { q: 'What do I bring on the day?', a: 'A valid photo ID (18+ only, no exceptions). Eat before you come, drink water, no alcohol the day before, and wear clothes that leave the placement easy to reach.' },
+        { q: 'Can I bring references or get a cover-up?', a: 'Yes, add up to four photos in the form. I draw something original from them. Cover-ups are case by case: send a clear photo of the old tattoo.' },
+        { q: 'Pregnancy, medication or health conditions?', a: 'I don’t tattoo during pregnancy or while breastfeeding. For medication or health conditions, tell me directly or on the consent form at the studio, never in this form.' },
+        { q: 'How do I take care of it?', a: 'Keep the wrap on as long as I tell you. Wash two to three times a day with unscented soap, pat dry, add a very thin layer of cream. Don’t scratch or peel. No pool, bath, sauna or sun for three weeks, then sunscreen for life. Spreading redness, heat, pus or fever are not normal: write to me and see a doctor.' }
       ]
     },
     book: {
-      kicker: '08 — Booking',
       title: 'Book a session',
       intro: 'Three short steps. I read every request myself and answer within a few days.',
       steps: ['The tattoo', 'When', 'You'],
@@ -814,7 +651,7 @@ const DICT = {
       satNote: 'Saturday: full day (8 h) or half day (4 h).',
       tzNote: 'All times are Montréal time.',
       slotsWeek: ['11:00', '13:00', '15:00', '17:00', '18:00'],
-      slotsSat: ['11:00 · full day (8 h)', '11:00 · half day (4 h)', '15:00 · half day (4 h)'],
+      slotsSat: ['11:00 (full day, 8 h)', '11:00 (half day, 4 h)', '15:00 (half day, 4 h)'],
       pickSlot: 'Pick a time',
       noDay: 'Choose a day in the calendar to see the times.',
       prevMonth: 'Previous month',
@@ -881,7 +718,6 @@ const DICT = {
       photosNote: 'photo(s) chosen. I will send them by reply.'
     },
     studio: {
-      kicker: '09 — Studio',
       title: 'Velours Tattoo',
       note: 'A private studio on the Main. By appointment only, no walk-ins.',
       addressTitle: 'Address',
@@ -894,10 +730,6 @@ const DICT = {
     },
     footer: {
       tagline: 'Tattoo artist at Velours Tattoo, Montréal. Cybersigilism, neo-tribal, lettering.',
-      contact: 'Contact',
-      hoursTitle: 'Hours',
-      hours: 'Tuesday to Saturday, by appointment',
-      studioTitle: 'Studio',
       rights: '© 2026 Skinreaper. All photographs belong to the artist.',
       age: '18+ only',
       top: 'Back to top'
@@ -907,12 +739,12 @@ const DICT = {
 
   fr: {
     meta: {
-      title: 'Skinreaper — Tatoueur, Montréal',
+      title: 'Skinreaper, tatoueur à Montréal',
       desc: 'Skinreaper, tatoueur chez Velours Tattoo, 3455 boul. Saint-Laurent, Montréal. Cybersigilism, néo-tribal et lettrage sur mesure. Réservez en ligne.'
     },
-    nav: { work: 'Travaux', about: 'À propos', styles: 'Styles', pricing: 'Tarifs', aftercare: 'Soins', faq: 'FAQ', policies: 'Politiques', book: 'Réserver', studio: 'Studio', menu: 'Menu', close: 'Fermer' },
+    nav: { work: 'Travaux', about: 'À propos', pricing: 'Tarifs', faq: 'FAQ', book: 'Réserver', studio: 'Studio', menu: 'Menu', close: 'Fermer' },
     hero: {
-      kicker: 'Tatoueur · Velours Tattoo · Montréal',
+      kicker: 'Tatoueur chez Velours Tattoo, Montréal',
       lines: ['Lignes nettes', 'pour histoires', 'sombres'],
       sub: 'Cybersigilism, néo-tribal et lettrage sur mesure, dessinés pour votre corps et personne d’autre.',
       cta: 'Réserver une séance',
@@ -922,9 +754,7 @@ const DICT = {
     },
     slot: { drop: 'Déposez une photo ici' },
     work: {
-      kicker: '01 — Travaux',
       title: 'Travaux choisis',
-      intro: 'Pièces fraîches et guéries, faites au studio. Touchez une photo pour l’agrandir.',
       filter: 'Filtrer les travaux',
       all: 'Tout',
       open: 'Ouvrir la photo',
@@ -935,35 +765,14 @@ const DICT = {
       of: 'sur'
     },
     about: {
-      kicker: '02 — À propos',
       title: 'L’artiste',
       lead: 'Je suis Skinreaper. Je tatoue chez Velours Tattoo, sur Saint-Laurent, et je dessine chaque pièce pour la personne qui la portera.',
-      body: [
-        'Mon travail se situe entre le cybersigilism, le néo-tribal et le lettrage : des lignes noires nettes et fluides qui suivent les muscles et les os au lieu de simplement se poser dessus.',
-        'Je pars de votre idée, de vos références et de l’emplacement, puis je construis le dessin selon la façon dont vous bougez. Pas de copies, pas de flash recyclé d’un autre artiste.'
-      ],
-      facts: [
-        { k: 'Studio', v: 'Velours Tattoo, Montréal' },
-        { k: 'Spécialités', v: 'Cybersigilism, lettrage' },
-        { k: 'Langues', v: 'Français, anglais' }
-      ],
+      body: 'Des lignes noires nettes et fluides qui suivent les muscles au lieu de se poser dessus. Je pars de votre idée et de l’emplacement, et je ne copie jamais le travail d’un autre artiste. Pas de portraits réalistes, pas de gros recouvrements pleins.',
+      stylesLabel: 'Styles',
+      styles: ['Cybersigilism', 'Néo-tribal', 'Lettrage', 'Fine line blackwork'],
       alt: 'Skinreaper au travail'
     },
-    styles: {
-      kicker: '03 — Styles',
-      title: 'Ce que je tatoue',
-      intro: 'Encre noire, travail de ligne, pensé pour le corps. Pas sûr que votre idée colle ? Demandez quand même.',
-      items: [
-        { n: 'Cybersigilism', d: 'Lignes fines, pointues et symétriques, avec pics et courbes qui épousent le corps. Noir net, sans ombrage superflu.' },
-        { n: 'Néo-tribal', d: 'Formes plus pleines et fluides inspirées du tribal, redessinées avec une énergie moderne et agressive.' },
-        { n: 'Lettrage & script', d: 'Mots, noms et dates sur mesure. Gothique, chrome, manuscrit ou lettres entièrement inventées.' },
-        { n: 'Fine line blackwork', d: 'Petites et moyennes pièces au détail précis : symboles, ornements, petits sigils.' }
-      ],
-      noTitle: 'Ce que je ne fais pas',
-      no: ['Portraits réalistes', 'Copies du travail sur mesure d’un autre artiste', 'Gros recouvrements pleins', 'Symboles haineux']
-    },
     pricing: {
-      kicker: '04 — Tarifs',
       title: 'Tarifs',
       intro: 'Chaque pièce est chiffrée après lecture de votre demande. Ces tarifs sont un point de départ.',
       rates: [
@@ -974,50 +783,20 @@ const DICT = {
       ],
       note: 'Prix en dollars canadiens, taxes en sus. Le prix final est confirmé une fois le dessin validé. Les modalités de dépôt sont en cours de finalisation.'
     },
-    aftercare: {
-      kicker: '05 — Soins',
-      title: 'Soins',
-      intro: 'Un tatouage guérit en deux à quatre semaines. Ce que vous faites maintenant décide de son allure dans dix ans.',
-      steps: [
-        { t: 'Premières heures', d: 'Gardez le pansement aussi longtemps que je vous l’indique à la fin de la séance. Lavez-vous toujours les mains avant de toucher le tatouage.' },
-        { t: 'Laver', d: 'Deux à trois fois par jour, doucement, à l’eau tiède et au savon sans parfum. Séchez en tapotant avec un essuie-tout propre.' },
-        { t: 'Hydrater', d: 'Une couche très fine de crème de soin sans parfum quand la peau tire. Moins, c’est mieux.' },
-        { t: 'Laisser peler', d: 'Les petites peaux et les démangeaisons sont normales après quelques jours. Ne grattez pas, n’arrachez rien.' },
-        { t: 'À éviter 3 semaines', d: 'Piscine, bain, mer, sauna, bronzage et soleil direct. Portez des vêtements amples et propres.' },
-        { t: 'Pour la vie', d: 'Une fois guéri, mettez de la crème solaire sur le tatouage. C’est le soleil qui brouille les lignes avec les années.' }
-      ],
-      warnTitle: 'Signes d’alerte',
-      warn: 'Une rougeur qui s’étend, de la chaleur, un gonflement qui empire, du pus ou de la fièvre ne font pas partie d’une guérison normale. Écrivez-moi et consultez un médecin ou un pharmacien sans attendre.'
-    },
     faq: {
-      kicker: '06 — FAQ',
       title: 'Questions',
+      intro: 'La réservation, le jour même et les soins.',
       items: [
-        { q: 'Comment réserver ?', a: 'Avec le formulaire de réservation de cette page : décrivez le tatouage, choisissez un jour et une heure, puis laissez vos coordonnées. Je réponds moi-même à chaque demande.' },
-        { q: 'Combien coûtera mon tatouage ?', a: 'Cela dépend de la taille, du détail et de l’emplacement. Le minimum est de 120 $, la plupart des pièces sont à 150 $ de l’heure, une demi-journée le samedi (4 h) est à 500 $ et une journée complète (8 h) à 900 $. Prix en dollars canadiens, taxes en sus. Vous recevez un prix avant que la réservation soit définitive.' },
-        { q: 'Quand tatouez-vous ?', a: 'Du mardi au vendredi, avec des séances qui commencent entre 11 h et 18 h. Le samedi est réservé aux journées complètes (8 h) ou demi-journées (4 h). Fermé dimanche et lundi.' },
-        { q: 'C’est mon premier tatouage, est-ce un problème ?', a: 'Pas du tout. Indiquez-le dans le formulaire et je vous guiderai le jour même : emplacement, stencil, pauses, soins.' },
-        { q: 'Puis-je apporter mon dessin ou des références ?', a: 'Oui, les références aident beaucoup. Ajoutez jusqu’à quatre photos dans le formulaire. Je dessinerai une pièce originale à partir d’elles ; je ne copie pas le travail sur mesure d’un autre artiste.' },
-        { q: 'Faites-vous des recouvrements ?', a: 'Au cas par cas. Envoyez une photo nette de l’ancien tatouage dans le formulaire et je vous dirai honnêtement ce qui est possible.' },
-        { q: 'Quel âge faut-il avoir ?', a: '18 ans ou plus, avec une pièce d’identité avec photo valide le jour même. Aucune exception, même avec l’accord des parents.' },
-        { q: 'Et les médicaments ou problèmes de santé ?', a: 'N’écrivez aucun détail médical dans le formulaire. Dites-le-moi directement, ou indiquez-le sur le formulaire de consentement au studio.' }
-      ]
-    },
-    policies: {
-      kicker: '07 — Politiques',
-      title: 'Politiques',
-      intro: 'Courtes et claires, pour que la séance se passe bien pour nous deux.',
-      items: [
-        { t: '18 ans et plus', d: 'Je ne tatoue que des adultes. Apportez une pièce d’identité avec photo valide à votre séance.' },
-        { t: 'Dépôt & annulation', d: 'Les modalités de dépôt, de report et d’absence sont en cours de finalisation. Elles vous seront confirmées par écrit lors de la réservation.' },
-        { t: 'Retouches', d: 'Les modalités de retouche sont en cours de finalisation. Suivre les soins à la lettre reste la meilleure façon de ne pas en avoir besoin.' },
-        { t: 'Grossesse & allaitement', d: 'Je ne tatoue pas pendant la grossesse ni pendant l’allaitement. Vous serez bienvenue après.' },
-        { t: 'Santé & médicaments', d: 'Certains médicaments et problèmes de santé influencent la guérison. Dites-le-moi directement ou sur le formulaire de consentement. Ce site ne demande jamais de détails médicaux.' },
-        { t: 'Le jour même', d: 'Mangez avant de venir, buvez de l’eau, pas d’alcool dans les 24 heures avant. Portez des vêtements qui donnent facilement accès à l’emplacement.' }
+        { q: 'Comment réserver ?', a: 'Avec le formulaire plus bas : décrivez le tatouage, choisissez un jour et une heure, puis laissez vos coordonnées. Je réponds moi-même à chaque demande.' },
+        { q: 'Quand tatouez-vous ?', a: 'Du mardi au vendredi, les séances commencent entre 11 h et 18 h. Le samedi, c’est en journée complète (8 h) ou en demi-journée (4 h). Fermé dimanche et lundi.' },
+        { q: 'Et le dépôt et les annulations ?', a: 'Les modalités de dépôt, de report et d’absence sont en cours de finalisation. Elles vous seront confirmées par écrit lors de la réservation.' },
+        { q: 'Qu’est-ce que j’apporte le jour même ?', a: 'Une pièce d’identité avec photo (18 ans et plus, sans exception). Mangez avant de venir, buvez de l’eau, pas d’alcool la veille, et portez des vêtements qui dégagent facilement l’emplacement.' },
+        { q: 'Références ou recouvrement ?', a: 'Oui, ajoutez jusqu’à quatre photos dans le formulaire. Je dessine une pièce originale à partir d’elles. Les recouvrements se font au cas par cas : envoyez une photo nette de l’ancien tatouage.' },
+        { q: 'Grossesse, médicaments ou santé ?', a: 'Je ne tatoue pas pendant la grossesse ni l’allaitement. Pour les médicaments ou problèmes de santé, dites-le-moi directement ou sur le formulaire de consentement au studio, jamais dans ce formulaire.' },
+        { q: 'Comment en prendre soin ?', a: 'Gardez le pansement le temps que je vous indique. Lavez deux à trois fois par jour au savon sans parfum, séchez en tapotant, appliquez une couche très fine de crème. Ne grattez pas, n’arrachez rien. Pas de piscine, bain, sauna ni soleil pendant trois semaines, puis crème solaire à vie. Une rougeur qui s’étend, de la chaleur, du pus ou de la fièvre ne sont pas normaux : écrivez-moi et consultez un médecin.' }
       ]
     },
     book: {
-      kicker: '08 — Réservation',
       title: 'Réserver une séance',
       intro: 'Trois étapes courtes. Je lis chaque demande moi-même et je réponds en quelques jours.',
       steps: ['Le tatouage', 'Quand', 'Vous'],
@@ -1047,7 +826,7 @@ const DICT = {
       satNote: 'Samedi : journée complète (8 h) ou demi-journée (4 h).',
       tzNote: 'Toutes les heures sont à l’heure de Montréal.',
       slotsWeek: ['11 h', '13 h', '15 h', '17 h', '18 h'],
-      slotsSat: ['11 h · journée complète (8 h)', '11 h · demi-journée (4 h)', '15 h · demi-journée (4 h)'],
+      slotsSat: ['11 h (journée complète, 8 h)', '11 h (demi-journée, 4 h)', '15 h (demi-journée, 4 h)'],
       pickSlot: 'Choisissez une heure',
       noDay: 'Choisissez un jour dans le calendrier pour voir les heures.',
       prevMonth: 'Mois précédent',
@@ -1114,7 +893,6 @@ const DICT = {
       photosNote: 'photo(s) choisie(s). Je les enverrai en réponse.'
     },
     studio: {
-      kicker: '09 — Studio',
       title: 'Velours Tattoo',
       note: 'Un studio privé sur la Main. Sur rendez-vous seulement, sans sans-rendez-vous.',
       addressTitle: 'Adresse',
@@ -1127,10 +905,6 @@ const DICT = {
     },
     footer: {
       tagline: 'Tatoueur chez Velours Tattoo, Montréal. Cybersigilism, néo-tribal, lettrage.',
-      contact: 'Contact',
-      hoursTitle: 'Heures',
-      hours: 'Du mardi au samedi, sur rendez-vous',
-      studioTitle: 'Studio',
       rights: '© 2026 Skinreaper. Toutes les photos appartiennent à l’artiste.',
       age: '18 ans et plus',
       top: 'Haut de page'
@@ -1154,7 +928,7 @@ const AUTO = {
 };
 
 /* ------------------------------------------------------------------ *
- * Time helpers — everything is computed in the studio time zone
+ * Time helpers: everything is computed in the studio time zone
  * ------------------------------------------------------------------ */
 const tzFmt = new Intl.DateTimeFormat('en-CA', {
   timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit',
@@ -1221,7 +995,7 @@ function resizeImage(file, max) {
 }
 
 /* ------------------------------------------------------------------ *
- * Styles — inline on purpose, switched at 1080px
+ * Styles: inline on purpose, switched at 1080px
  * ------------------------------------------------------------------ */
 const styleCache = {};
 function makeStyles(d) {
@@ -1246,11 +1020,11 @@ function makeStyles(d) {
     menu: 'position:fixed;inset:0;z-index:45;background:#0A0A0A;padding:88px 20px 32px;display:flex;flex-direction:column;justify-content:space-between;overflow-y:auto;',
     menuLink: `display:block;padding:4px 0;font-family:${H};font-size:clamp(40px,12vw,58px);line-height:1.1;text-transform:uppercase;color:#F2F2F0;text-decoration:none;`,
 
-    section: `position:relative;padding:${d ? '150px 0' : '96px 0'};border-top:1px solid #1A1A1A;scroll-margin-top:${d ? 40 : 30}px;`,
-    head: `display:flex;${d ? 'align-items:flex-end;justify-content:space-between;' : 'flex-direction:column;'}gap:${d ? 48 : 24}px;margin-bottom:${d ? 72 : 44}px;`,
+    section: `position:relative;padding:${d ? '100px 0' : '64px 0'};border-top:1px solid #1A1A1A;scroll-margin-top:${d ? 40 : 30}px;`,
+    head: `display:flex;${d ? 'align-items:flex-end;justify-content:space-between;' : 'flex-direction:column;'}gap:${d ? 40 : 16}px;margin-bottom:${d ? 48 : 28}px;`,
     kicker: `margin:0;font-family:${B};font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8C8C88;`,
     h1: `margin:22px 0 0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 'clamp(80px,7.2vw,164px)' : 'clamp(48px,14vw,96px)'};line-height:.9;letter-spacing:-.005em;white-space:nowrap;`,
-    h2: `margin:16px 0 0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 'clamp(80px,8vw,136px)' : 'clamp(52px,15vw,76px)'};line-height:.9;`,
+    h2: `margin:0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 'clamp(64px,6vw,104px)' : 'clamp(44px,12vw,64px)'};line-height:.9;`,
     h3: `margin:0;font-family:${H};font-weight:400;text-transform:uppercase;font-size:${d ? 34 : 28}px;line-height:1;letter-spacing:.01em;`,
     lead: `margin:0;font-size:${d ? 22 : 18}px;line-height:1.5;color:#F2F2F0;font-weight:300;max-width:44ch;`,
     body: `margin:0;font-size:${d ? 17 : 16}px;line-height:1.7;color:#A6A6A2;`,
@@ -1261,39 +1035,31 @@ function makeStyles(d) {
     btnOff: btn + 'background:#1A1A1A;color:#6E6E6B;border:1px solid #1A1A1A;cursor:not-allowed;',
     chipOn: chip + 'background:#F2F2F0;color:#0A0A0A;border:1px solid #F2F2F0;',
     chipOff: chip + 'background:transparent;color:#A6A6A2;border:1px solid #2A2A28;',
-    tag: 'padding:8px 14px;border:1px solid #2A2A28;font-size:13px;color:#8C8C88;text-decoration:line-through;text-decoration-color:#3A3A38;',
+    tag: 'padding:10px 16px;border:1px solid #2A2A28;border-radius:999px;font-size:14px;color:#D8D8D4;',
     cover: 'display:block;width:100%;height:100%;object-fit:cover;',
     slot: `display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;height:100%;min-height:200px;padding:16px;background:repeating-linear-gradient(135deg,#0D0D0D 0 14px,#111110 14px 28px);border:1px dashed #2A2A28;color:#6E6E6B;font-family:${B};font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;`,
 
     hero: `position:relative;padding:${d ? '140px 0 80px' : '100px 0 64px'};`,
     heroGrid: `display:grid;grid-template-columns:${d ? '1.15fr .85fr' : '1fr'};gap:${d ? 56 : 40}px;align-items:end;${d ? 'min-height:calc(100vh - 220px);' : ''}`,
     heroMeta: 'list-style:none;padding:0;margin:44px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#6E6E6B;',
-    heroMedia: `position:relative;overflow:hidden;background:#0D0D0D;${d ? 'height:min(76vh,800px);' : 'aspect-ratio:4/5;'}`,
+    heroMedia: `position:relative;overflow:hidden;background:#0D0D0D;${d ? 'height:min(76vh,800px);' : 'aspect-ratio:1/1;'}`,
     heroPar: 'position:absolute;top:-8%;bottom:-8%;left:0;right:0;transform:translate3d(0,var(--sr-par,0px),0);will-change:transform;',
 
-    gallery: `columns:${d ? 3 : 2};column-gap:${d ? 20 : 10}px;`,
-    figure: `margin:0 0 ${d ? 28 : 16}px;break-inside:avoid;position:relative;`,
+    gallery: `columns:${d ? 4 : 2};column-gap:${d ? 16 : 10}px;`,
+    figure: `margin:0 0 ${d ? 20 : 14}px;break-inside:avoid;position:relative;`,
     figBtn: 'display:block;width:100%;padding:0;border:0;background:#0D0D0D;cursor:zoom-in;overflow:hidden;',
     figcap: `display:flex;justify-content:space-between;gap:8px;padding:10px 2px 0;font-size:${d ? 12 : 10}px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#6E6E6B;`,
 
-    aboutGrid: `display:grid;grid-template-columns:${d ? '5fr 6fr' : '1fr'};gap:${d ? 96 : 44}px;align-items:start;`,
-    aboutMedia: `position:relative;overflow:hidden;aspect-ratio:4/5;background:#0D0D0D;${d ? 'position:sticky;top:110px;' : ''}`,
-    facts: `display:grid;grid-template-columns:${d ? 'repeat(3,1fr)' : '1fr'};margin:48px 0 0;border-top:1px solid #1F1F1E;`,
-    fact: `padding:20px ${d ? '20px' : '0'} 20px 0;border-bottom:1px solid #1F1F1E;`,
-
-    row: `display:grid;grid-template-columns:${d ? '90px 1fr 1.2fr' : '44px 1fr'};gap:${d ? '0 32px' : '10px 14px'};padding:${d ? '40px 0' : '28px 0'};border-bottom:1px solid #1F1F1E;align-items:baseline;`,
-    rowNum: `font-family:${B};font-size:12px;font-weight:600;letter-spacing:.16em;color:#6E6E6B;`,
+    aboutGrid: `display:grid;grid-template-columns:${d ? '4fr 6fr' : '1fr'};gap:${d ? 80 : 32}px;align-items:center;`,
+    aboutMedia: `position:relative;overflow:hidden;aspect-ratio:${d ? '4/5' : '4/3'};background:#0D0D0D;`,
 
     rates: `display:grid;grid-template-columns:${d ? 'repeat(4,1fr)' : '1fr'};border-top:1px solid #1F1F1E;${d ? 'border-left:1px solid #1F1F1E;' : ''}`,
     rate: `display:flex;${d ? 'flex-direction:column-reverse;justify-content:flex-end;gap:28px;padding:40px 28px;border-right:1px solid #1F1F1E;' : 'justify-content:space-between;align-items:center;gap:16px;padding:24px 0;'}border-bottom:1px solid #1F1F1E;`,
     rateV: `margin:0;font-family:${H};font-size:${d ? 60 : 40}px;line-height:1;white-space:nowrap;`,
 
-    care: `list-style:none;margin:0;padding:0;display:grid;grid-template-columns:${d ? 'repeat(3,1fr)' : '1fr'};gap:${d ? '56px 40px' : '36px'};`,
     warn: `display:flex;gap:18px;align-items:flex-start;margin-top:${d ? 64 : 44}px;padding:${d ? '28px 32px' : '22px 20px'};border:1px solid #E0736B;`,
 
     faqBtn: `width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:${d ? '28px 0' : '22px 0'};min-height:48px;background:transparent;border:0;color:#F2F2F0;text-align:left;cursor:pointer;font-family:${B};font-size:${d ? 22 : 18}px;font-weight:400;line-height:1.35;`,
-    policies: `display:grid;grid-template-columns:${d ? 'repeat(2,1fr)' : '1fr'};gap:0 ${d ? 64 : 0}px;`,
-
     bookGrid: `display:grid;grid-template-columns:${d ? '5fr 7fr' : '1fr'};gap:${d ? 80 : 40}px;align-items:start;`,
     bookAside: d ? 'position:sticky;top:110px;' : '',
     formWrap: `position:relative;background:#101010;border:1px solid #1F1F1E;padding:${d ? '40px 44px 0' : '24px 18px 0'};scroll-margin-top:${d ? 90 : 70}px;`,
@@ -1317,12 +1083,11 @@ function makeStyles(d) {
     calNavOff: 'width:44px;height:44px;flex:none;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid #1A1A1A;color:#3A3A38;cursor:default;font-size:18px;',
 
     studioGrid: `display:grid;grid-template-columns:${d ? '1fr 1fr' : '1fr'};gap:${d ? 56 : 36}px;align-items:start;`,
-    studioMedia: `position:relative;overflow:hidden;background:#0D0D0D;aspect-ratio:${d ? '4/5' : '4/3'};`,
-    map: `display:block;width:100%;height:${d ? 340 : 260}px;border:1px solid #1F1F1E;filter:grayscale(1) invert(.92) contrast(.85);`,
+    studioMedia: 'position:relative;overflow:hidden;background:#0D0D0D;aspect-ratio:4/3;',
+    map: `display:block;width:100%;height:${d ? 240 : 200}px;border:1px solid #1F1F1E;filter:grayscale(1) invert(.92) contrast(.85);`,
 
-    footer: `border-top:1px solid #1A1A1A;padding:${d ? '80px 0 40px' : '56px 0 32px'};`,
+    footer: `border-top:1px solid #1A1A1A;padding:${d ? '48px 0 32px' : '40px 0 28px'};`,
     footLink: 'display:block;color:#A6A6A2;text-decoration:none;font-size:14px;line-height:1.9;overflow-wrap:anywhere;',
-    giant: `margin:${d ? '72px 0 24px' : '48px 0 16px'};font-family:${H};font-size:${d ? 'clamp(120px,17vw,280px)' : '21vw'};line-height:.85;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px #2A2A28;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;`,
 
     lb: 'position:fixed;inset:0;z-index:60;background:rgba(5,5,5,.97);display:flex;flex-direction:column;',
     lbTop: `display:flex;justify-content:space-between;align-items:center;gap:12px;padding:${d ? '18px 32px' : '10px 14px'};`,
@@ -1344,7 +1109,7 @@ function emptyForm() {
 }
 
 /* ------------------------------------------------------------------ *
- * Component — state and behaviour
+ * Component: state and behaviour
  * ------------------------------------------------------------------ */
 class Component extends DC.Component {
   constructor(props) {
@@ -1716,19 +1481,19 @@ class Component extends DC.Component {
       { k: b.instagram, v: f.instagram.trim() },
       { k: b.contact, v: opt(b.contacts, f.contact) }
     ];
-    return rows.map(r => ({ k: r.k, v: r.v || '—', empty: !r.v }));
+    return rows.filter(r => r.v);
   }
 
   summaryText() {
     const b = DICT[this.state.lang].book;
-    return b.mailSubject + '\n\n' + this.summaryRows().filter(r => !r.empty).map(r => `${r.k}: ${r.v}`).join('\n') +
+    return b.mailSubject + '\n\n' + this.summaryRows().map(r => `${r.k}: ${r.v}`).join('\n') +
       (this.state.photos.length ? `\n\n${this.state.photos.length} ${b.photosNote}` : '');
   }
 
   calendarLink(sl) {
     const f = this.state.f;
     return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
-      `&text=${encodeURIComponent('Tattoo — ' + f.name.trim())}` +
+      `&text=${encodeURIComponent('Tattoo with ' + f.name.trim())}` +
       `&dates=${gcalStamp(sl.start)}/${gcalStamp(sl.end)}` +
       `&details=${encodeURIComponent(this.summaryText())}` +
       `&location=${encodeURIComponent(LOCATION)}&ctz=${encodeURIComponent(TZ)}`;
@@ -1797,15 +1562,15 @@ class Component extends DC.Component {
 
       if (!p.formEndpoint) throw new Error('no endpoint');
       const body = {
-        _subject: `${DICT.en.book.mailSubject} — ${data.name} — ${data.dateLabel}, ${data.slot}`,
+        _subject: `${DICT.en.book.mailSubject}: ${data.name}, ${data.dateLabel}, ${data.slot}`,
         _template: 'table',
         _captcha: 'false',
         _replyto: data.email,
         _honey: data.company,
         Name: data.name,
         Email: data.email,
-        Phone: data.phone || '—',
-        Instagram: data.instagram || '—',
+        Phone: data.phone || 'not given',
+        Instagram: data.instagram || 'not given',
         'Preferred contact': data.contact,
         Date: data.dateLabel,
         Time: `${data.slot} (${data.hours} h, ${TZ})`,
@@ -1873,9 +1638,9 @@ class Component extends DC.Component {
       `background:${st.scrolled || st.menuOpen ? 'rgba(10,10,10,.9)' : 'transparent'};` +
       (st.scrolled && !st.menuOpen ? '-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);' : '');
 
-    const ids = ['work', 'about', 'styles', 'pricing', 'aftercare', 'faq', 'policies', 'studio'];
+    const ids = ['work', 'about', 'pricing', 'faq', 'studio'];
     const navMobile = ids.concat('book').map(id => ({ id, label: t.nav[id] }));
-    const navDesktop = ['work', 'about', 'styles', 'pricing', 'faq', 'studio'].map(id => ({ id, label: t.nav[id] }));
+    const navDesktop = ids.map(id => ({ id, label: t.nav[id] }));
 
     const img = path => ({ path, src: ImageSlot.src(path), missing: ImageSlot.missing(path) });
     const works = this.works.map(w => Object.assign(img(w.src), {
@@ -1969,7 +1734,7 @@ class Component extends DC.Component {
 
     const summary = this.summaryRows();
     const mailtoHref = st.status === 'failed'
-      ? `mailto:${EMAIL}?subject=${encodeURIComponent(b.mailSubject + ' — ' + f.name.trim())}&body=${encodeURIComponent(this.summaryText().slice(0, 1800))}`
+      ? `mailto:${EMAIL}?subject=${encodeURIComponent(b.mailSubject + ': ' + f.name.trim())}&body=${encodeURIComponent(this.summaryText().slice(0, 1800))}`
       : '';
 
     return {

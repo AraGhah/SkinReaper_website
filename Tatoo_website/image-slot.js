@@ -1,5 +1,5 @@
 /*
- * image-slot.js — drag and drop placeholders for images that are not in img/ yet.
+ * image-slot.js: drag and drop placeholders for images that are not in img/ yet.
  *
  *   ImageSlot.src(path)      path, or a local preview URL if a file was dropped on the slot
  *   ImageSlot.missing(path)  true once the browser failed to load the path

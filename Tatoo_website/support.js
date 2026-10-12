@@ -1,5 +1,5 @@
 /*
- * support.js — runtime for .dc.html Design Component files.
+ * support.js: runtime for .dc.html Design Component files.
  *
  * Template syntax (inside <x-dc><template> ... </template></x-dc>):
  *   {{ expr }}                         text or attribute interpolation (escaped)

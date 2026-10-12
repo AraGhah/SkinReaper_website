@@ -1,5 +1,5 @@
 /**
- * Skinreaper booking backend — Google Apps Script Web app.
+ * Skinreaper booking backend: Google Apps Script Web app.
  *
  *   GET  ?                      -> {"ok":true,"service":"skinreaper-booking"}
  *   GET  ?action=busy&from&to   -> {"ok":true,"busy":[{"start":ms,"end":ms}, ...]}
@@ -196,7 +196,7 @@ function when_(slot, lang) {
 }
 
 function eventTitle_(d) {
-  return 'Tattoo — ' + String(d.name).trim() + (d.style ? ' (' + d.style + ')' : '');
+  return 'Tattoo with ' + String(d.name).trim() + (d.style ? ' (' + d.style + ')' : '');
 }
 
 function rows_(d, slot) {
@@ -204,19 +204,19 @@ function rows_(d, slot) {
     ['When', when_(slot, 'en') + ' (' + slot.hours + ' h)'],
     ['Name', d.name],
     ['Email', d.email],
-    ['Phone', d.phone || '—'],
-    ['Instagram', d.instagram || '—'],
-    ['Preferred contact', d.contact || '—'],
-    ['First tattoo', d.firstTattoo || '—'],
+    ['Phone', d.phone],
+    ['Instagram', d.instagram],
+    ['Preferred contact', d.contact],
+    ['First tattoo', d.firstTattoo],
     ['Idea', d.idea],
-    ['Style', d.style || '—'],
-    ['Size', d.size || '—'],
-    ['Placement', d.placement || '—'],
-    ['Ink', d.ink || '—'],
-    ['Budget', d.budget || '—'],
+    ['Style', d.style],
+    ['Size', d.size],
+    ['Placement', d.placement],
+    ['Ink', d.ink],
+    ['Budget', d.budget],
     ['Reference photos', String((d.photos || []).length)],
     ['Language', d.lang === 'fr' ? 'Français' : 'English']
-  ];
+  ].filter(function (r) { return r[1]; });
 }
 
 function detailsText_(d, slot) {
@@ -232,8 +232,8 @@ function sendClient_(d, slot) {
   var fr = d.lang === 'fr';
   var name = esc_(String(d.name).trim().split(/\s+/)[0]);
   var subject = fr
-    ? 'Votre séance de tatouage est réservée — ' + when_(slot, 'fr')
-    : 'Your tattoo session is booked — ' + when_(slot, 'en');
+    ? 'Votre séance de tatouage est réservée : ' + when_(slot, 'fr')
+    : 'Your tattoo session is booked: ' + when_(slot, 'en');
   var lines = fr ? [
     'Bonjour ' + name + ',',
     'Votre séance avec ' + esc_(CONFIG.ARTIST_NAME) + ' est confirmée.',
@@ -274,7 +274,7 @@ function sendArtist_(d, slot, event) {
 
   MailApp.sendEmail({
     to: artistEmail_(),
-    subject: 'New booking — ' + String(d.name).trim() + ' — ' + when_(slot, 'en'),
+    subject: 'New booking: ' + String(d.name).trim() + ', ' + when_(slot, 'en'),
     name: 'Skinreaper website',
     replyTo: String(d.email).trim(),
     htmlBody: wrapHtml_('<p><strong>New booking from the website.</strong> It is already in your calendar and the client got an invite.</p>' +
